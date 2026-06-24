@@ -1,42 +1,48 @@
 <template>
-  <div class="contact-page">
-    <h1>📞 Liên hệ</h1>
+  <div class="pt-20 max-w-6xl mx-auto px-6">
+    <h1 class="text-3xl font-bold tracking-widest text-center uppercase">📞 Liên hệ</h1>
     
-    <div class="contact-container">
-      <div class="contact-info glass-card">
-        <h3>✦ HÙNG HÀ</h3>
-        <p><strong>📍 Địa chỉ:</strong> Hà Nội</p>
-        <p><strong>📞 Điện thoại:</strong> 0348***711</p>
-        <p><strong>✉ Email:</strong> cutmemaydiy@gmail.com</p>
-        <p><strong>🕐 Giờ mở cửa:</strong> Tự thêm</p>
-        <div class="social-links">
-          <a href="#" class="social-link">📘 Facebook</a>
-          <a href="#" class="social-link">📸 Instagram</a>
-          <a href="#" class="social-link">🎵 TikTok</a>
+    <div class="grid md:grid-cols-2 gap-6 mt-6">
+      <div class="bg-dark3/80 backdrop-blur-lg border border-white/5 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-light tracking-wide">✦ HÙNG HÀ</h3>
+        <div class="mt-4 space-y-2 text-muted">
+          <p><strong class="text-light">📍 Địa chỉ:</strong> Hà Nội</p>
+          <p><strong class="text-light">📞 Điện thoại:</strong> 0348***711</p>
+          <p><strong class="text-light">✉ Email:</strong> cutmemaydiy@gmail.com</p>
+          <p><strong class="text-light">🕐 Giờ mở cửa:</strong> 8:00 - 21:00</p>
+        </div>
+        <div class="flex gap-4 mt-4">
+          <a href="#" class="text-muted hover:text-gold transition">📘 Facebook</a>
+          <a href="#" class="text-muted hover:text-gold transition">📸 Instagram</a>
+          <a href="#" class="text-muted hover:text-gold transition">🎵 TikTok</a>
         </div>
       </div>
 
-      <div class="contact-form glass-card">
-        <h3>Gửi tin nhắn</h3>
-        <form @submit.prevent="handleSubmit">
-          <div class="form-group">
-            <label>Họ tên</label>
-            <input type="text" v-model="form.name" placeholder="Nhập họ tên" required />
+      <div class="bg-dark3/80 backdrop-blur-lg border border-white/5 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-light tracking-wide">Gửi tin nhắn</h3>
+        <form @submit.prevent="handleSubmit" class="mt-4 space-y-4">
+          <div>
+            <label class="block text-light text-sm font-semibold">Họ tên</label>
+            <input type="text" v-model="form.name" placeholder="Nhập họ tên" required
+                   class="w-full bg-dark2 border border-white/10 rounded-lg px-4 py-3 text-light placeholder-muted focus:border-gold focus:outline-none" />
           </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" v-model="form.email" placeholder="Nhập email" required />
+          <div>
+            <label class="block text-light text-sm font-semibold">Email</label>
+            <input type="email" v-model="form.email" placeholder="Nhập email" required
+                   class="w-full bg-dark2 border border-white/10 rounded-lg px-4 py-3 text-light placeholder-muted focus:border-gold focus:outline-none" />
           </div>
-          <div class="form-group">
-            <label>Chủ đề</label>
-            <input type="text" v-model="form.subject" placeholder="Chủ đề" required />
+          <div>
+            <label class="block text-light text-sm font-semibold">Chủ đề</label>
+            <input type="text" v-model="form.subject" placeholder="Chủ đề" required
+                   class="w-full bg-dark2 border border-white/10 rounded-lg px-4 py-3 text-light placeholder-muted focus:border-gold focus:outline-none" />
           </div>
-          <div class="form-group">
-            <label>Nội dung</label>
-            <textarea v-model="form.message" rows="4" placeholder="Nhập tin nhắn..." required></textarea>
+          <div>
+            <label class="block text-light text-sm font-semibold">Nội dung</label>
+            <textarea v-model="form.message" rows="4" placeholder="Nhập tin nhắn..." required
+                      class="w-full bg-dark2 border border-white/10 rounded-lg px-4 py-3 text-light placeholder-muted focus:border-gold focus:outline-none resize-none"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-full">Gửi</button>
-          <p v-if="successMessage" class="success">{{ successMessage }}</p>
+          <button type="submit" class="bg-gold text-dark w-full py-3 rounded hover:bg-goldHover transition-all font-semibold tracking-wider">Gửi</button>
+          <p v-if="successMessage" class="text-gold text-center italic mt-2">{{ successMessage }}</p>
         </form>
       </div>
     </div>
@@ -46,12 +52,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const form = ref({
-  name: '',
-  email: '',
-  subject: '',
-  message: ''
-})
+const form = ref({ name: '', email: '', subject: '', message: '' })
 const successMessage = ref('')
 
 const handleSubmit = () => {
@@ -61,63 +62,3 @@ const handleSubmit = () => {
   setTimeout(() => { successMessage.value = '' }, 5000)
 }
 </script>
-
-<style scoped>
-.contact-page {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 28px;
-}
-.contact-page h1 {
-  font-size: 34px;
-  text-align: center;
-  letter-spacing: 6px;
-  margin-bottom: 32px;
-  font-weight: 700;
-}
-.contact-container {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 32px;
-}
-.contact-info, .contact-form {
-  padding: 32px 28px;
-}
-.contact-info h3, .contact-form h3 {
-  font-size: 22px;
-  letter-spacing: 2px;
-  margin-bottom: 16px;
-}
-.contact-info p {
-  margin: 8px 0;
-  color: var(--text-muted);
-  font-size: 15px;
-}
-.contact-info strong {
-  color: var(--text-light);
-  font-weight: 600;
-}
-.social-links {
-  margin-top: 16px;
-  display: flex;
-  gap: 16px;
-}
-.social-link {
-  color: var(--text-muted);
-  letter-spacing: 1px;
-  font-size: 14px;
-  transition: color 0.3s;
-}
-.social-link:hover {
-  color: var(--accent);
-}
-.btn-full {
-  width: 100%;
-}
-.success {
-  color: var(--accent);
-  text-align: center;
-  margin-top: 14px;
-  font-style: italic;
-}
-</style>

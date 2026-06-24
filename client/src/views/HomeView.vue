@@ -1,30 +1,24 @@
 <template>
-  <div class="home">
-    <!-- Banner chính -->
-    <section class="hero">
-      <div class="hero-content">
-        <span class="hero-tag">✦ Bộ sưu tập 2026</span>
-        <h1 class="hero-title">HÙNG HÀ</h1>
-        <p class="hero-sub">"Không mua chịu thua bạn rồi" 😎</p>
-        <router-link to="/products" class="btn btn-primary">Xem ngay</router-link>
+  <div class="pt-20">
+    <!-- Hero -->
+    <section class="relative bg-gradient-to-br from-dark via-dark2 to-dark rounded-xl p-20 text-center overflow-hidden border border-white/5 mb-16">
+      <div class="absolute inset-0 bg-gradient-radial from-gold/5 to-transparent pointer-events-none"></div>
+      <div class="relative z-10">
+        <span class="text-gold text-sm tracking-[0.3em] uppercase font-semibold">✦ Bộ sưu tập 2026</span>
+        <h1 class="text-7xl font-extrabold tracking-[0.3em] bg-gradient-to-r from-light to-gold bg-clip-text text-transparent mt-2">HÙNG HÀ</h1>
+        <p class="text-muted text-xl italic tracking-wider mt-2">"Không mua chịu thua bạn rồi" 😎</p>
+        <router-link to="/products" class="inline-block bg-gold text-dark px-8 py-4 rounded hover:bg-goldHover transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/30 font-semibold tracking-wider mt-6">Xem ngay</router-link>
       </div>
-      <div class="hero-overlay"></div>
     </section>
 
-    <!-- Sản phẩm nổi bật -->
-    <section class="featured">
-      <div class="section-header">
-        <h2>🔥 Sản phẩm hot</h2>
-        <p class="section-desc">Mấy món này bán chạy lắm rồi đó</p>
+    <!-- Featured -->
+    <section>
+      <h2 class="text-3xl font-bold tracking-widest text-center uppercase">🔥 Sản phẩm hot</h2>
+      <p class="text-muted text-center italic tracking-wide mt-1">Mấy món này bán chạy lắm rồi đó</p>
+      <div v-if="!productsStore.loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+        <ProductCard v-for="product in productsStore.products.slice(0, 8)" :key="product.id" :product="product" />
       </div>
-      <div class="product-grid" v-if="!productsStore.loading">
-        <ProductCard 
-          v-for="product in productsStore.products.slice(0, 8)" 
-          :key="product.id"
-          :product="product"
-        />
-      </div>
-      <div v-else class="loading">Đang tải...</div>
+      <div v-else class="text-muted text-center py-12 italic">Đang tải...</div>
     </section>
   </div>
 </template>
@@ -40,72 +34,3 @@ onMounted(() => {
   productsStore.fetchProducts()
 })
 </script>
-
-<style scoped>
-.home {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 28px;
-}
-.hero {
-  position: relative;
-  background: linear-gradient(160deg, #0a0a0a 0%, #1a1816 40%, #0a0a0a 100%);
-  border-radius: 12px;
-  padding: 120px 40px;
-  text-align: center;
-  margin-bottom: 60px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 248, 240, 0.05);
-}
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 30% 40%, rgba(212, 175, 55, 0.06) 0%, transparent 60%);
-  pointer-events: none;
-}
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
-.hero-tag {
-  display: inline-block;
-  color: var(--accent);
-  font-size: 14px;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  font-weight: 600;
-}
-.hero-title {
-  font-size: 80px;
-  font-weight: 800;
-  letter-spacing: 16px;
-  background: linear-gradient(to right, #f5f5f5, #d4af37);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 12px;
-}
-.hero-sub {
-  font-size: 20px;
-  color: var(--text-muted);
-  letter-spacing: 4px;
-  margin-bottom: 36px;
-  font-style: italic;
-}
-.section-header {
-  text-align: center;
-  margin-bottom: 8px;
-}
-.section-header h2 {
-  font-size: 34px;
-  font-weight: 700;
-  letter-spacing: 4px;
-}
-.section-desc {
-  color: var(--text-muted);
-  font-size: 16px;
-  font-style: italic;
-  letter-spacing: 2px;
-}
-</style>

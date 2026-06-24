@@ -9,7 +9,7 @@ import ContactView from '../views/ContactView.vue'
 import CartView from '../views/CartView.vue'
 import LoginView from '../views/LoginView.vue'
 import NotFound from '../views/NotFound.vue'
-
+import OrderHistoryView from '../views/OrderHistoryView.vue'
 // Protected routes
 import CheckoutView from '../views/CheckoutView.vue'
 
@@ -49,6 +49,12 @@ const routes = [
     component: CartView,
     meta: { title: 'Giỏ hàng' }
   },
+  {
+  path: '/orders',
+  name: 'Orders',
+  component: OrderHistoryView,
+  meta: { title: 'Lịch sử đơn hàng', requiresAuth: true }
+},
   {
     path: '/login',
     name: 'Login',
@@ -95,24 +101,34 @@ const router = createRouter({
   }
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   document.title = to.meta.title ? `Shop Quần Áo | ${to.meta.title}` : 'Shop Quần Áo'
   
   const authStore = useAuthStore()
   
+  // 🔥 Nếu có token nhưng chưa có user, gọi API lấy user
+  if (authStore.token && !authStore.user) {
+    await authStore.fetchUser()
+  }
+  
+  // 🔥 Kiểm tra admin
   if (to.meta.requiresAdmin) {
     if (!authStore.isLoggedIn) {
       return next({ name: 'Login', query: { redirect: to.fullPath } })
     }
-    if (!authStore.isAdmin) {
+    // Kiểm tra role admin
+    if (authStore.user?.role !== 'admin') {
+      console.warn('🚫 Không phải admin, chuyển về trang chủ')
       return next({ name: 'Home' })
     }
   }
   
+  // Kiểm tra yêu cầu đăng nhập
   if (to.meta.requiresAuth && !authStore.isLoggedIn) {
     return next({ name: 'Login', query: { redirect: to.fullPath } })
   }
   
+  // Nếu đã đăng nhập mà vào trang login → về trang chủ
   if (to.meta.guest && authStore.isLoggedIn) {
     return next({ name: 'Home' })
   }

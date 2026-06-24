@@ -89,17 +89,18 @@ export const useProductsStore = defineStore('products', {
   },
 
   actions: {
-    async fetchProducts() {
-      this.loading = true
-      this.error = null
-      try {
-        await new Promise(resolve => setTimeout(resolve, 400))
-      } catch (error) {
-        this.error = 'Không thể tải sản phẩm'
-      } finally {
-        this.loading = false
-      }
-    },
+async fetchProducts() {
+  this.loading = true
+  this.error = null
+  try {
+    const response = await axios.get('/api/products')
+    this.products = response.data
+  } catch (error) {
+    this.error = 'Không thể tải sản phẩm'
+  } finally {
+    this.loading = false
+  }
+},
 
     async fetchProductById(id) {
       this.loading = true

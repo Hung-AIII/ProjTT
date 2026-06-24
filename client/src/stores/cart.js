@@ -18,20 +18,23 @@ export const useCartStore = defineStore('cart', {
   actions: {
     // Thêm sản phẩm vào giỏ
     addToCart(product, quantity = 1) {
-      const existingItem = this.items.find(item => item.id === product.id)
-      if (existingItem) {
-        existingItem.quantity += quantity
-      } else {
-        this.items.push({
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          image: product.image,
-          quantity: quantity,
-        })
-      }
-      this.saveCart()
-    },
+  // Lấy ID đúng từ MongoDB (_id)
+  const productId = product._id || product.id
+  
+  const existingItem = this.items.find(item => item.id === productId)
+  if (existingItem) {
+    existingItem.quantity += quantity
+  } else {
+    this.items.push({
+      id: productId,           // ← dùng _id từ MongoDB
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: quantity,
+    })
+  }
+  this.saveCart()
+},
 
     // Xóa sản phẩm khỏi giỏ
     removeFromCart(productId) {

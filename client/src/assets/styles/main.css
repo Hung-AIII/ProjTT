@@ -1,164 +1,46 @@
-/* ===== FONT ===== */
-* {
-  font-family: 'Times New Roman', Times, serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+  
+  body {
+    @apply bg-dark text-light font-serif;
+  }
+  
+  ::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-dark;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gold rounded-sm;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-goldHover;
+  }
 }
 
-/* ===== BIẾN MÀU ===== */
-:root {
-  --primary: #0a0a0a;
-  --secondary: #141414;
-  --accent: #d4af37;
-  --accent-hover: #e8c84a;
-  --text-light: #f0ede8;
-  --text-muted: #a89888;
-  --border-dark: #2a2520;
-  --shadow-dark: 0 8px 40px rgba(0, 0, 0, 0.9);
-  --glass: rgba(255, 248, 240, 0.03);
-  --glass-border: rgba(255, 248, 240, 0.06);
-  --radius: 8px;
-  --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: var(--primary);
-  color: var(--text-light);
-  line-height: 1.7;
-  min-height: 100vh;
-  letter-spacing: 0.3px;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-img {
-  max-width: 100%;
-  display: block;
-}
-
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--primary); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); }
-
-/* ===== CONTAINER ===== */
-.container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 28px;
-}
-
-/* ===== BUTTONS ===== */
-.btn {
-  display: inline-block;
-  padding: 14px 36px;
-  border: none;
-  border-radius: var(--radius);
-  font-size: 15px;
-  font-family: 'Times New Roman', Times, serif;
-  letter-spacing: 1.5px;
-  cursor: pointer;
-  transition: var(--transition);
-  text-transform: uppercase;
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: var(--primary);
-}
-.btn-primary:hover {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--text-light);
-  border: 1.5px solid var(--accent);
-}
-.btn-outline:hover {
-  background: var(--accent);
-  color: var(--primary);
-  transform: translateY(-2px);
-}
-
-.btn-dark {
-  background: rgba(255,255,255,0.05);
-  color: var(--text-light);
-  border: 1px solid var(--border-dark);
-}
-.btn-dark:hover {
-  background: var(--accent);
-  color: var(--primary);
-  border-color: var(--accent);
-}
-
-/* ===== GLASS CARD ===== */
-.glass-card {
-  background: rgba(20, 20, 20, 0.85);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius);
-  transition: var(--transition);
-}
-.glass-card:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-dark);
-}
-
-/* ===== GRID ===== */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 32px;
-  margin-top: 32px;
-}
-
-/* ===== FORM ===== */
-input, textarea, select {
-  width: 100%;
-  padding: 14px 18px;
-  background: var(--secondary);
-  border: 1px solid var(--border-dark);
-  border-radius: var(--radius);
-  color: var(--text-light);
-  font-size: 15px;
-  font-family: 'Times New Roman', Times, serif;
-  transition: var(--transition);
-}
-input:focus, textarea:focus, select:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
-}
-input::placeholder, textarea::placeholder {
-  color: var(--text-muted);
-}
-
-/* ===== LOADING ===== */
-.loading {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--text-muted);
-  font-size: 18px;
-  font-style: italic;
-}
-.loading::after {
-  content: '...';
-  animation: dots 1.5s steps(4) infinite;
-}
-@keyframes dots {
-  0% { content: ''; }
-  25% { content: '.'; }
-  50% { content: '..'; }
-  75% { content: '...'; }
+@layer components {
+  .btn-primary {
+    @apply bg-gold text-dark px-6 py-3 rounded hover:bg-goldHover 
+           transition-all hover:-translate-y-0.5 hover:shadow-lg 
+           hover:shadow-gold/30 font-semibold tracking-wider;
+  }
+  
+  .btn-outline {
+    @apply border border-gold text-light px-6 py-3 rounded 
+           hover:bg-gold hover:text-dark transition-all 
+           hover:-translate-y-0.5;
+  }
+  
+  .glass-card {
+    @apply bg-dark3/80 backdrop-blur-lg border border-white/5 
+           rounded-lg transition-all hover:border-gold/50 
+           hover:shadow-2xl hover:shadow-black/50;
+  }
 }

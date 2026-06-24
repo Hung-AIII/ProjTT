@@ -1,111 +1,42 @@
 <template>
-  <div class="admin-orders">
-    <h1>Manage Orders</h1>
+  <div class="p-6 pt-24">
+    <h1 class="text-3xl font-bold text-light tracking-wider">📋 Quản lý đơn hàng</h1>
     
-    <table class="order-table glass-card">
-      <thead>
-        <tr>
-          <th>Order #</th>
-          <th>Customer</th>
-          <th>Total</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>#001</td>
-          <td>Nguyễn Văn A</td>
-          <td>450,000đ</td>
-          <td><span class="status-pending">Processing</span></td>
-          <td>
-            <button class="btn-status">Update</button>
-          </td>
-        </tr>
-        <tr>
-          <td>#002</td>
-          <td>Trần Thị B</td>
-          <td>680,000đ</td>
-          <td><span class="status-shipped">Shipped</span></td>
-          <td>
-            <button class="btn-status">Update</button>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="5" class="empty-row">No more orders to display.</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="bg-dark3/80 backdrop-blur-lg border border-white/5 rounded-lg overflow-hidden mt-6">
+      <table class="w-full">
+        <thead class="bg-white/5">
+          <tr>
+            <th class="text-left text-muted text-sm uppercase tracking-wider px-4 py-3">Mã đơn</th>
+            <th class="text-left text-muted text-sm uppercase tracking-wider px-4 py-3">Khách hàng</th>
+            <th class="text-left text-muted text-sm uppercase tracking-wider px-4 py-3">Tổng tiền</th>
+            <th class="text-left text-muted text-sm uppercase tracking-wider px-4 py-3">Trạng thái</th>
+            <th class="text-left text-muted text-sm uppercase tracking-wider px-4 py-3">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t border-white/5 hover:bg-white/5">
+            <td class="px-4 py-3 text-muted">#001</td>
+            <td class="px-4 py-3 text-light">Nguyễn Văn A</td>
+            <td class="px-4 py-3 text-gold">450,000đ</td>
+            <td class="px-4 py-3"><span class="bg-gold/20 text-gold text-xs px-3 py-1 rounded-full">Đang xử lý</span></td>
+            <td class="px-4 py-3">
+              <button class="text-gold hover:text-goldHover transition">Cập nhật</button>
+            </td>
+          </tr>
+          <tr class="border-t border-white/5 hover:bg-white/5">
+            <td class="px-4 py-3 text-muted">#002</td>
+            <td class="px-4 py-3 text-light">Trần Thị B</td>
+            <td class="px-4 py-3 text-gold">680,000đ</td>
+            <td class="px-4 py-3"><span class="bg-green-500/20 text-green-400 text-xs px-3 py-1 rounded-full">Đã giao</span></td>
+            <td class="px-4 py-3">
+              <button class="text-gold hover:text-goldHover transition">Cập nhật</button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" class="text-center text-muted italic py-6">Không có đơn hàng nào để hiển thị.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
-
-<style scoped>
-.admin-orders {
-  padding: 20px;
-}
-.admin-orders h1 {
-  font-size: 28px;
-  letter-spacing: 3px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-.order-table {
-  width: 100%;
-  border-collapse: collapse;
-  overflow: hidden;
-}
-.order-table th {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 14px 16px;
-  text-align: left;
-  font-weight: 600;
-  letter-spacing: 1px;
-  font-size: 14px;
-  text-transform: uppercase;
-}
-.order-table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-}
-.order-table tr:hover td {
-  background: rgba(255, 255, 255, 0.02);
-}
-.status-pending {
-  background: #f39c12;
-  color: var(--primary);
-  padding: 4px 14px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-.status-shipped {
-  background: var(--accent);
-  color: var(--primary);
-  padding: 4px 14px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-.btn-status {
-  padding: 6px 16px;
-  background: transparent;
-  color: var(--text-muted);
-  border: 1px solid var(--border-dark);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 13px;
-}
-.btn-status:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-.empty-row {
-  text-align: center;
-  color: var(--text-muted);
-  font-style: italic;
-  padding: 24px !important;
-}
-</style>

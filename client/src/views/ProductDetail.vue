@@ -1,27 +1,27 @@
 <template>
-  <div class="product-detail" v-if="product">
-    <div class="detail-container glass-card">
-      <div class="detail-image">
-        <img :src="product.image" :alt="product.name" />
-      </div>
-      <div class="detail-info">
-        <span class="category">{{ product.category }}</span>
-        <h1>{{ product.name }}</h1>
-        <p class="price">{{ formatPrice(product.price) }}</p>
-        <p class="description">{{ product.description || 'Hàng đẹp, chất lượng, giá tốt.' }}</p>
-        <div class="quantity-control">
-          <label>Số lượng</label>
-          <button @click="decreaseQuantity" class="qty-btn">−</button>
-          <span class="qty-number">{{ quantity }}</span>
-          <button @click="increaseQuantity" class="qty-btn">+</button>
+  <div class="pt-20 max-w-6xl mx-auto px-6">
+    <div v-if="product" class="bg-dark3/80 backdrop-blur-lg border border-white/5 rounded-lg p-8 grid md:grid-cols-2 gap-12">
+      <img :src="product.image" :alt="product.name" class="w-full h-[500px] object-cover rounded" />
+      <div>
+        <span class="text-gold text-sm tracking-widest uppercase">{{ product.category }}</span>
+        <h1 class="text-3xl font-bold text-light mt-1">{{ product.name }}</h1>
+        <p class="text-gold text-3xl font-bold mt-2">{{ formatPrice(product.price) }}</p>
+        <p class="text-muted italic mt-4">{{ product.description || 'Hàng đẹp, chất lượng, giá tốt.' }}</p>
+        
+        <div class="flex items-center gap-4 mt-6">
+          <label class="text-light font-semibold">Số lượng</label>
+          <button @click="decreaseQuantity" class="w-9 h-9 border border-white/10 rounded-full hover:border-gold hover:text-gold transition">−</button>
+          <span class="text-xl font-bold w-10 text-center">{{ quantity }}</span>
+          <button @click="increaseQuantity" class="w-9 h-9 border border-white/10 rounded-full hover:border-gold hover:text-gold transition">+</button>
         </div>
-        <button @click="addToCart" class="btn btn-primary btn-full">🛒 Thêm vào giỏ</button>
-        <router-link to="/products" class="btn-back">← Quay lại cửa hàng</router-link>
+        
+        <button @click="addToCart" class="bg-gold text-dark w-full py-3 rounded hover:bg-goldHover transition-all font-semibold tracking-wider mt-6">🛒 Thêm vào giỏ</button>
+        <router-link to="/products" class="block text-muted hover:text-gold transition text-center mt-3 italic">← Quay lại cửa hàng</router-link>
       </div>
     </div>
+    <div v-else-if="loading" class="text-muted text-center py-20 italic">Đang tải...</div>
+    <div v-else class="text-muted text-center py-20 italic">Không tìm thấy sản phẩm.</div>
   </div>
-  <div v-else-if="loading" class="loading">Đang tải...</div>
-  <div v-else class="not-found">Không tìm thấy sản phẩm.</div>
 </template>
 
 <script setup>
@@ -39,11 +39,8 @@ const product = ref(null)
 const loading = ref(true)
 const quantity = ref(1)
 
-const formatPrice = (price) => {
-  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)
-}
-
-const increaseQuantity = () => { quantity.value++ }
+const formatPrice = (price) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)
+const increaseQuantity = () => quantity.value++
 const decreaseQuantity = () => { if (quantity.value > 1) quantity.value-- }
 
 const addToCart = () => {
@@ -57,107 +54,7 @@ onMounted(async () => {
     const data = await productsStore.fetchProductById(id)
     if (data) product.value = data
     else router.push('/products')
-  } catch (error) { router.push('/products') }
+  } catch { router.push('/products') }
   finally { loading.value = false }
 })
 </script>
-
-<style scoped>
-.product-detail {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 40px 28px;
-}
-.detail-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  padding: 40px;
-}
-.detail-image img {
-  width: 100%;
-  height: 550px;
-  object-fit: cover;
-  border-radius: 4px;
-}
-.detail-info h1 {
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  margin-bottom: 4px;
-}
-.category {
-  display: inline-block;
-  color: var(--accent);
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.price {
-  font-size: 28px;
-  color: var(--accent);
-  font-weight: 700;
-  margin: 12px 0 16px;
-}
-.description {
-  color: var(--text-muted);
-  font-size: 16px;
-  font-style: italic;
-  margin-bottom: 24px;
-  line-height: 1.8;
-}
-.quantity-control {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-.quantity-control label {
-  font-weight: 600;
-  letter-spacing: 1px;
-  font-size: 15px;
-}
-.qty-btn {
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: transparent;
-  border-radius: 50%;
-  font-size: 18px;
-  color: var(--text-light);
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.qty-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-.qty-number {
-  font-size: 20px;
-  font-weight: 700;
-  min-width: 40px;
-  text-align: center;
-}
-.btn-full {
-  width: 100%;
-  margin-bottom: 12px;
-}
-.btn-back {
-  display: inline-block;
-  color: var(--text-muted);
-  transition: color 0.3s;
-  font-style: italic;
-  letter-spacing: 1px;
-}
-.btn-back:hover {
-  color: var(--accent);
-}
-.not-found {
-  text-align: center;
-  padding: 80px 20px;
-  font-size: 20px;
-  color: var(--text-muted);
-  font-style: italic;
-}
-</style>
