@@ -61,12 +61,12 @@ const updateProduct = async (req, res) => {
 
     const { name, price, image, category, description, stock } = req.body
 
-    product.name = name || product.name
-    product.price = price || product.price
-    product.image = image || product.image
-    product.category = category || product.category
-    product.description = description || product.description
-    product.stock = stock || product.stock
+      product.name = name ?? product.name
+      product.price = price !== undefined ? price : product.price
+      product.image = image ?? product.image
+      product.category = category ?? product.category
+      product.description = description !== undefined ? description : product.description
+      product.stock = stock !== undefined ? stock : product.stock
 
     const updatedProduct = await product.save()
     res.json(updatedProduct)

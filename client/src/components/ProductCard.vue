@@ -12,6 +12,21 @@
         <h3 class="text-light font-semibold hover:text-gold transition">{{ product.name }}</h3>
       </router-link>
       <p class="text-gold text-xl font-bold mt-1">{{ formatPrice(product.price) }}</p>
+       <!-- ✅ THÊM dòng hiển thị tồn kho -->
+  <p class="text-xs mt-1" :class="product.stock > 0 ? 'text-muted' : 'text-red-500'">
+    {{ product.stock > 0 ? `Còn ${product.stock} sản phẩm` : '⚠ Hết hàng' }}
+  </p>
+
+  <!-- ✅ Disable nút khi hết hàng -->
+  <button 
+    @click="addToCart" 
+    :disabled="product.stock <= 0"
+    :class="product.stock > 0 
+      ? 'border-gold text-light hover:bg-gold hover:text-dark cursor-pointer' 
+      : 'border-white/10 text-muted cursor-not-allowed opacity-50'"
+    class="border w-full mt-3 rounded transition-all text-sm py-2">
+    {{ product.stock > 0 ? 'Thêm vào giỏ' : 'Hết hàng' }}
+  </button>
       <button @click="addToCart" class="border border-gold text-light w-full mt-3 rounded hover:bg-gold hover:text-dark transition-all text-sm py-2">Thêm vào giỏ</button>
     </div>
   </div>

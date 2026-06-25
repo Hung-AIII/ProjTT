@@ -11,35 +11,29 @@ const {
 const { protect } = require('../middleware/auth')
 const { admin } = require('../middleware/admin')
 
-// @route   POST /api/orders
-// @desc    Tạo đơn hàng mới
-// @access  Private
+// ===== PUBLIC (cần đăng nhập) =====
+
+// POST /api/orders — Tạo đơn hàng mới
 router.post('/', protect, createOrder)
 
-// @route   GET /api/orders/me
-// @desc    Lấy đơn hàng của user hiện tại
-// @access  Private
+// GET /api/orders/me — Lấy đơn của user hiện tại
+// ⚠️ PHẢI đặt TRƯỚC /:id để không bị match nhầm
 router.get('/me', protect, getMyOrders)
 
-// @route   GET /api/orders/:id
-// @desc    Lấy chi tiết 1 đơn hàng
-// @access  Private
-router.get('/:id', protect, getOrderById)
-
-// @route   PUT /api/orders/:id/cancel
-// @desc    Hủy đơn hàng
-// @access  Private
+// PUT /api/orders/:id/cancel — User tự hủy đơn
+// ⚠️ PHẢI đặt TRƯỚC /:id/status
 router.put('/:id/cancel', protect, cancelOrder)
 
-// ===== ADMIN ROUTES =====
-// @route   GET /api/orders
-// @desc    Lấy tất cả đơn hàng (Admin)
-// @access  Private/Admin
+// GET /api/orders/:id — Lấy chi tiết 1 đơn
+router.get('/:id', protect, getOrderById)
+
+// ===== ADMIN ONLY =====
+
+// GET /api/orders — Lấy tất cả đơn (Admin)
+// ⚠️ PHẢI đặt SAU /me vì / match sau các route cụ thể
 router.get('/', protect, admin, getAllOrders)
 
-// @route   PUT /api/orders/:id/status
-// @desc    Cập nhật trạng thái đơn hàng (Admin)
-// @access  Private/Admin
+// PUT /api/orders/:id/status — Cập nhật trạng thái (Admin)
 router.put('/:id/status', protect, admin, updateOrderStatus)
 
 module.exports = router

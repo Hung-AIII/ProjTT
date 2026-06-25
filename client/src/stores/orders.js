@@ -20,10 +20,7 @@ export const useOrdersStore = defineStore('orders', {
       this.loading = true
       this.error = null
       try {
-        const token = localStorage.getItem('token')
-        const response = await axios.get('/api/orders/me', {
-          headers: { Authorization: `Bearer ${token}` }
-        })
+        const response = await axios.get('/api/orders/me')
         this.orders = response.data
       } catch (error) {
         this.error = error.response?.data?.message || 'Không thể tải đơn hàng'
@@ -38,10 +35,8 @@ export const useOrdersStore = defineStore('orders', {
       this.loading = true
       this.error = null
       try {
-        const token = localStorage.getItem('token')
-        const response = await axios.get('/api/orders', {
-          headers: { Authorization: `Bearer ${token}` }
-        })
+        const response = await axios.get('/api/orders')
+
         this.orders = response.data
       } catch (error) {
         this.error = error.response?.data?.message || 'Không thể tải đơn hàng'
@@ -54,12 +49,8 @@ export const useOrdersStore = defineStore('orders', {
     // Tạo đơn hàng mới
     async createOrder(orderData) {
       try {
-        const token = localStorage.getItem('token')
-        console.log('🔑 Token gửi đi:', token) // Kiểm tra token
-        
-        const response = await axios.post('/api/orders', orderData, {
-          headers: { Authorization: `Bearer ${token}` }
-        })
+        const response = await axios.post('/api/orders', orderData)
+
         await this.fetchMyOrders()
         return { success: true, order: response.data }
       } catch (error) {
@@ -71,10 +62,7 @@ export const useOrdersStore = defineStore('orders', {
     // Admin: Cập nhật trạng thái đơn hàng
     async updateOrderStatus(id, status) {
       try {
-        const token = localStorage.getItem('token')
-        const response = await axios.put(`/api/orders/${id}/status`, { status }, {
-          headers: { Authorization: `Bearer ${token}` }
-        })
+        const response = await axios.put(`/api/orders/${id}/status`, { status })
         await this.fetchAllOrders()
         return { success: true, order: response.data }
       } catch (error) {

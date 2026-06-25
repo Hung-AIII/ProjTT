@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose')
 
 const OrderSchema = new mongoose.Schema(
@@ -13,7 +12,6 @@ const OrderSchema = new mongoose.Schema(
         product: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Product',
-          // KHÔNG required nữa
         },
         name: { type: String, required: true },
         price: { type: Number, required: true },
@@ -36,6 +34,19 @@ const OrderSchema = new mongoose.Schema(
       enum: ['pending', 'processing', 'shipped', 'delivered', 'cancelled'],
       default: 'pending',
     },
+    paymentMethod: {
+      type: String,
+      enum: ['cod', 'bank'],
+      default: 'cod'
+    },
+    isPaid: {
+      type: Boolean,
+      default: false
+    },
+    paidAt: {
+      type: Date,
+      default: null
+    }
   },
   {
     timestamps: true,

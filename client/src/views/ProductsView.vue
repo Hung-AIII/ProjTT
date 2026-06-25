@@ -19,12 +19,12 @@
     </div>
 
     <!-- Products -->
-    <div v-if="!productsStore.loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-      <ProductCard v-for="product in filteredProducts" :key="product.id" :product="product" />
+    <div v-if="!productsStore.loadingList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+      <ProductCard v-for="product in filteredProducts" :key="product._id || product.id" :product="product" />
     </div>
     <div v-else class="text-muted text-center py-12 italic">Đang tải...</div>
 
-    <div v-if="!productsStore.loading && filteredProducts.length === 0" 
+    <div v-if="!productsStore.loadingList && filteredProducts.length === 0" 
          class="text-muted text-center py-12 italic">Không tìm thấy sản phẩm nào.</div>
   </div>
 </template>

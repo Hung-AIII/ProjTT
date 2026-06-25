@@ -61,11 +61,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '../stores/cart'
 import { useAuthStore } from '../stores/auth'
 import { useOrdersStore } from '../stores/orders'
+import { ref, computed, onMounted } from 'vue'
 
 const router = useRouter()
 const cartStore = useCartStore()
@@ -73,10 +73,15 @@ const authStore = useAuthStore()
 const ordersStore = useOrdersStore()
 
 const shippingInfo = ref({
-  name: authStore.user?.name || '',
+  name: '',
   phone: '',
   address: '',
   note: ''
+})
+onMounted(() => {
+  if (authStore.user?.name) {
+    shippingInfo.value.name = authStore.user.name
+  }
 })
 
 const formatPrice = (price) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)
@@ -88,7 +93,10 @@ const handleCheckout = async () => {
     return
   }
   const result = await ordersStore.createOrder({
-    items: cartStore.items,
+    items: cartStore.items.map(item => ({
+      ...item,
+      productId: item.id  // ← thêm dòng này
+    })),
     total: cartStore.totalPrice,
     shipping: shippingInfo.value
   })
