@@ -87,11 +87,14 @@ const handleCheckout = async () => {
     router.push('/login')
     return
   }
-  const result = await ordersStore.createOrder({
-    items: cartStore.items,
-    total: cartStore.totalPrice,
-    shipping: shippingInfo.value
-  })
+const result = await ordersStore.createOrder({
+  items: cartStore.items.map(item => ({
+    ...item,
+    productId: item.id  // ← thêm dòng này
+  })),
+  total: cartStore.totalPrice,
+  shipping: shippingInfo.value
+})
   if (result.success) {
     cartStore.clearCart()
     alert('Đặt hàng thành công! 🎉')

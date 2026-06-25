@@ -36,6 +36,19 @@ const OrderSchema = new mongoose.Schema(
       enum: ['pending', 'processing', 'shipped', 'delivered', 'cancelled'],
       default: 'pending',
     },
+    paymentMethod: {
+      type: String,
+      enum: ['cod', 'bank'],
+      default: 'cod'
+    },
+    isPaid: {
+      type: Boolean,
+      default: false  // chỉ true khi admin xác nhận đã nhận tiền
+    },
+    paidAt: {
+      type: Date,
+      default: null
+    }
   },
   {
     timestamps: true,
