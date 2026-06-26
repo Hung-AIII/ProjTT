@@ -17,7 +17,13 @@ export const useAuthStore = defineStore('auth', {
       try {
         const response = await axios.post('/api/auth/login', { email, password })
         this.token = response.data.token
-        this.user = response.data
+        this.user = {
+          _id: response.data._id,
+          name: response.data.name,
+          email: response.data.email,
+          role: response.data.role,
+        }
+        
         localStorage.setItem('token', this.token)
         localStorage.setItem('user', JSON.stringify(this.user))
         axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`

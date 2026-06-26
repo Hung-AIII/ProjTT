@@ -9,6 +9,7 @@ import ContactView from '../views/ContactView.vue'
 import CartView from '../views/CartView.vue'
 import LoginView from '../views/LoginView.vue'
 import NotFound from '../views/NotFound.vue'
+import ProfileView from '../views/ProfileView.vue'
 import OrderHistoryView from '../views/OrderHistoryView.vue'
 // Protected routes
 import CheckoutView from '../views/CheckoutView.vue'
@@ -85,6 +86,12 @@ const routes = [
     component: AdminOrdersView,
     meta: { title: 'Quản lý đơn hàng', requiresAuth: true, requiresAdmin: true }
   },
+  {
+  path: '/profile',
+  name: 'Profile',
+  component: ProfileView,
+  meta: { title: 'Tài khoản', requiresAuth: true }
+},
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',

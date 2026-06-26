@@ -38,7 +38,9 @@
         </router-link>
 
         <template v-if="authStore.isLoggedIn">
-          <span class="text-muted text-sm">👤 {{ authStore.user?.name || 'User' }}</span>
+          <router-link to="/profile" class="text-muted hover:text-gold transition text-sm">
+              👤 {{ authStore.user?.name || 'User' }}
+          </router-link>
           <button @click="handleLogout" class="text-muted hover:text-gold transition text-sm tracking-wider">Đăng xuất</button>
         </template>
         <router-link v-else to="/login" class="bg-gold text-dark px-4 py-2 rounded hover:bg-goldHover transition-all text-sm font-semibold tracking-wider">Đăng nhập</router-link>

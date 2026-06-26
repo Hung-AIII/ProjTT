@@ -71,7 +71,7 @@ const router = useRouter()
 const cartStore = useCartStore()
 const authStore = useAuthStore()
 const ordersStore = useOrdersStore()
-
+const paymentMethod = ref('cod')
 const shippingInfo = ref({
   name: authStore.user?.name || '',
   phone: '',
@@ -88,12 +88,10 @@ const handleCheckout = async () => {
     return
   }
 const result = await ordersStore.createOrder({
-  items: cartStore.items.map(item => ({
-    ...item,
-    productId: item.id  // ← thêm dòng này
-  })),
+  items: cartStore.items.map(item => ({ ...item, productId: item.id })),
   total: cartStore.totalPrice,
-  shipping: shippingInfo.value
+  shipping: shippingInfo.value,
+  paymentMethod: paymentMethod.value  // ← THÊM DÒNG NÀY
 })
   if (result.success) {
     cartStore.clearCart()

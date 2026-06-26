@@ -15,7 +15,7 @@
     <section>
       <h2 class="text-3xl font-bold tracking-widest text-center uppercase">🔥 Sản phẩm hot</h2>
       <p class="text-muted text-center italic tracking-wide mt-1">Mấy món này bán chạy lắm rồi đó</p>
-      <div v-if="!productsStore.loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+      <div v-if="!productsStore.loadingList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
         <ProductCard v-for="product in productsStore.products.slice(0, 8)" :key="product.id" :product="product" />
       </div>
       <div v-else class="text-muted text-center py-12 italic">Đang tải...</div>

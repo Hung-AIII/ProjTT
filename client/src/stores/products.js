@@ -78,71 +78,99 @@ export const useProductsStore = defineStore('products', {
       { id: 49, name: 'Găng tay da', price: 350000, image: 'https://picsum.photos/seed/49/400/500', category: 'Phụ kiện', description: 'Da thật, tinh tế và bền bỉ.' },
       { id: 50, name: 'Mũ fedora thanh lịch', price: 290000, image: 'https://picsum.photos/seed/50/400/500', category: 'Phụ kiện', description: 'Mũ fedora phong cách cổ điển, sang trọng.' }
     ],
-    loading: false,
+     loadingList: false,
+    loadingAction: false,
     error: null,
   }),
 
   getters: {
+    // ✅ Tìm theo _id (MongoDB) hoặc id (cũ)
     getProductById: (state) => (id) => {
-      return state.products.find(product => product.id === id)
+      return state.products.find(p => p._id === id || p.id === id)
     },
   },
 
   actions: {
-async fetchProducts() {
-  this.loading = true
-  this.error = null
-  try {
-    const response = await axios.get('/api/products')
-    this.products = response.data
-  } catch (error) {
-    this.error = 'Không thể tải sản phẩm'
-  } finally {
-    this.loading = false
-  }
-},
-
-    async fetchProductById(id) {
-      this.loading = true
+    // Lấy tất cả sản phẩm từ API
+    async fetchProducts() {
+      this.loadingList = true
       this.error = null
       try {
-        await new Promise(resolve => setTimeout(resolve, 300))
-        return this.getProductById(id) || null
+        const response = await axios.get('/api/products')
+        this.products = response.data
+      } catch (error) {
+        this.error = 'Không thể tải sản phẩm'
+        console.error('❌ fetchProducts:', error)
+      } finally {
+        this.loadingList = false
+      }
+    },
+
+    // Lấy chi tiết 1 sản phẩm
+    async fetchProductById(id) {
+      this.loadingList = true
+      this.error = null
+      try {
+        const response = await axios.get(`/api/products/${id}`)
+        const product = response.data
+        // Cập nhật vào store
+        const index = this.products.findIndex(p => p._id === id || p.id === id)
+        if (index !== -1) {
+          this.products[index] = product
+        } else {
+          this.products.push(product)
+        }
+        return product
       } catch (error) {
         this.error = 'Không thể tải sản phẩm'
         return null
       } finally {
-        this.loading = false
+        this.loadingList = false
       }
     },
 
+    // ✅ Thêm sản phẩm mới — gọi API thật
     async createProduct(productData) {
+      this.loadingAction = true
       try {
-        this.products.push({ ...productData, id: Date.now() })
-        return { success: true }
+        const response = await axios.post('/api/products', productData)
+        await this.fetchProducts()  // reload để có dữ liệu mới nhất
+        return { success: true, product: response.data }
       } catch (error) {
-        return { success: false, message: 'Thêm sản phẩm thất bại' }
+        console.error('❌ createProduct:', error.response?.data)
+        return { success: false, message: error.response?.data?.message || 'Thêm sản phẩm thất bại' }
+      } finally {
+        this.loadingAction = false
       }
     },
 
+    // ✅ Cập nhật sản phẩm — gọi API thật
     async updateProduct(id, productData) {
+      this.loadingAction = true
       try {
-        const index = this.products.findIndex(p => p.id === id)
-        if (index !== -1) {
-          this.products[index] = { ...this.products[index], ...productData }
-        }
-        return { success: true }
+        const response = await axios.put(`/api/products/${id}`, productData)
+        await this.fetchProducts()  // reload để đồng bộ
+        return { success: true, product: response.data }
       } catch (error) {
-        return { success: false, message: 'Cập nhật sản phẩm thất bại' }
+        console.error('❌ updateProduct:', error.response?.data)
+        return { success: false, message: error.response?.data?.message || 'Cập nhật sản phẩm thất bại' }
+      } finally {
+        this.loadingAction = false
       }
     },
 
+    // ✅ Xóa sản phẩm — gọi API thật
     async deleteProduct(id) {
+      this.loadingAction = true
       try {
-        this.products = this.products.filter(p => p.id !== id)
+        await axios.delete(`/api/products/${id}`)
+        await this.fetchProducts()  // reload sau khi xóa
         return { success: true }
       } catch (error) {
-        return { success: false, message: 'Xóa sản phẩm thất bại' }
+        console.error('❌ deleteProduct:', error.response?.data)
+        return { success: false, message: error.response?.data?.message || 'Xóa sản phẩm thất bại' }
+      } finally {
+        this.loadingAction = false
       }
     },
   }
