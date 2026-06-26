@@ -173,10 +173,13 @@ const updateProfile = async () => {
   profileSuccess.value = ''
   profileError.value = ''
   try {
-    const response = await axios.put('/api/auth/profile', {
-      name: profileForm.value.name
-    })
-    // Cập nhật store
+    // ✅ Thêm token thủ công để chắc chắn
+    const token = localStorage.getItem('token')
+    const response = await axios.put(
+  '/api/auth/profile',
+  { name: profileForm.value.name },
+  { headers: { Authorization: `Bearer ${token}` } }
+)
     authStore.user.name = response.data.name
     localStorage.setItem('user', JSON.stringify(authStore.user))
     profileSuccess.value = 'Cập nhật thành công!'

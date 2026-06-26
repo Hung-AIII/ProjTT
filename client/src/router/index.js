@@ -13,6 +13,7 @@ import ProfileView from '../views/ProfileView.vue'
 import OrderHistoryView from '../views/OrderHistoryView.vue'
 // Protected routes
 import CheckoutView from '../views/CheckoutView.vue'
+import AdminContactsView from '../views/admin/AdminContactsView.vue'
 
 // Admin routes
 import DashboardView from '../views/admin/DashboardView.vue'
@@ -88,17 +89,24 @@ const routes = [
   },
   {
   path: '/profile',
-  name: 'Profile',
-  component: ProfileView,
-  meta: { title: 'Tài khoản', requiresAuth: true }
-},
+    name: 'Profile',
+    component: ProfileView,
+    meta: { title: 'Tài khoản', requiresAuth: true }
+  },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound,
     meta: { title: '404 - Không tìm thấy' }
-  }
+  },
+  {
+  path: '/admin/contacts',
+  name: 'AdminContacts',
+  component: AdminContactsView,
+  meta: { title: 'Tin nhắn', requiresAuth: true, requiresAdmin: true }
+}
 ]
+
 
 const router = createRouter({
   history: createWebHistory(),

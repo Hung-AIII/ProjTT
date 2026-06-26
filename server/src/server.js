@@ -16,11 +16,13 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+
 // Routes
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/products', require('./routes/products'))
 app.use('/api/orders', require('./routes/orders'))
 app.use('/api/cart', require('./routes/cart'))
+app.use('/api/contact', require('./routes/contact'))
 
 // Route kiểm tra server
 app.get('/', (req, res) => {

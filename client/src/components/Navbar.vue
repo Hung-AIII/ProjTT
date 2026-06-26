@@ -24,6 +24,9 @@
           <router-link to="/admin" class="text-gold hover:text-goldHover transition tracking-wider">📊 Tổng quan</router-link>
           <router-link to="/admin/products" class="text-gold hover:text-goldHover transition tracking-wider">📦 Sản phẩm</router-link>
           <router-link to="/admin/orders" class="text-gold hover:text-goldHover transition tracking-wider">📋 Đơn hàng</router-link>
+          <router-link to="/admin/contacts" class="text-gold hover:text-goldHover transition tracking-wider">
+  💬 Tin nhắn
+</router-link>
         </template>
       </div>
 

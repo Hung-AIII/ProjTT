@@ -51,14 +51,24 @@
 
 <script setup>
 import { ref } from 'vue'
+import axios from 'axios'
+
 
 const form = ref({ name: '', email: '', subject: '', message: '' })
 const successMessage = ref('')
 
-const handleSubmit = () => {
-  console.log('Form submitted:', form.value)
-  successMessage.value = 'Đã gửi! Shop sẽ phản hồi sớm nhất có thể.'
-  form.value = { name: '', email: '', subject: '', message: '' }
-  setTimeout(() => { successMessage.value = '' }, 5000)
+const handleSubmit = async () => {
+  try {
+    await axios.post('/api/contact', {
+      name: form.value.name,
+      email: form.value.email,
+      subject: form.value.subject,
+      message: form.value.message
+    })
+    submitted.value = true
+    form.value = { name: '', email: '', subject: '', message: '' }
+  } catch (error) {
+    alert('Gửi thất bại, vui lòng thử lại')
+  }
 }
 </script>

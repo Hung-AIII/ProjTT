@@ -49,21 +49,24 @@ const getUsers = async (req, res) => {
 // ✅ MỚI: Cập nhật tên
 const updateProfile = async (req, res) => {
   try {
+    console.log('=== UPDATE PROFILE ===')
+    console.log('req.user:', req.user)
+    console.log('req.body:', req.body)
+    console.log('req.headers.authorization:', req.headers.authorization)
+    
     const { name } = req.body
     if (!name || !name.trim()) {
       return res.status(400).json({ message: 'Tên không được để trống' })
     }
     const user = await User.findById(req.user._id)
     if (!user) return res.status(404).json({ message: 'Không tìm thấy user' })
-
     user.name = name.trim()
     await user.save()
-
-    res.json({
-      _id: user._id, name: user.name,
-      email: user.email, role: user.role
-    })
-  } catch (error) { res.status(500).json({ message: error.message }) }
+    res.json({ _id: user._id, name: user.name, email: user.email, role: user.role })
+  } catch (error) {
+    console.error('❌ updateProfile error:', error)  // ← THÊM
+    res.status(500).json({ message: error.message })
+  }
 }
 
 // ✅ MỚI: Đổi mật khẩu
