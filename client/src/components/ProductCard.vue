@@ -29,10 +29,13 @@
       <button
         @click="addToCart"
         :disabled="product.stock <= 0"
-        :class="product.stock > 0
-          ? 'border-gold text-light hover:bg-gold hover:text-dark cursor-pointer'
-          : 'border-white/10 text-muted cursor-not-allowed opacity-50'"
-        class="border w-full mt-3 rounded transition-all text-sm py-2">
+        :class="[
+          'w-full mt-3 rounded transition-all text-sm py-2 border',
+          product.stock > 0
+            ? 'border-gold text-light hover:bg-gold hover:text-dark cursor-pointer'
+            : 'border-white/10 text-muted cursor-not-allowed opacity-50'
+        ]"
+      >
         {{ product.stock > 0 ? 'Thêm vào giỏ' : 'Hết hàng' }}
       </button>
     </div>
@@ -44,16 +47,24 @@
 import { useCartStore } from '../stores/cart'
 
 const props = defineProps({
-  product: { type: Object, required: true }
+  product: {
+    type: Object,
+    required: true
+  }
 })
 
 const cartStore = useCartStore()
 
-const formatPrice = (price) =>
-  new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)
+const formatPrice = (price) => {
+  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)
+}
 
 const addToCart = () => {
-  if (props.product.stock <= 0) return
-  cartStore.addToCart(props.product)
+  if (!props.product || props.product.stock <= 0) {
+    return
+  }
+  
+  console.log('✅ Thêm vào giỏ:', props.product.name)
+  cartStore.addToCart(props.product, 1)
 }
 </script>

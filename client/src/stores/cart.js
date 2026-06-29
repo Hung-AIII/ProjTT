@@ -1,9 +1,25 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
+
+const getCartKey = () => {
+  const user = localStorage.getItem('user')
+  const userId = user ? JSON.parse(user)._id : null
+  return userId ? `cart_${userId}` : 'cart_guest'
+}
+
+// Đọc JSON an toàn — nếu lỗi hoặc rỗng thì trả về mảng rỗng, không bao giờ crash app
+const safeParseCart = (raw) => {
+  if (!raw) return []
+  try {
+    const parsed = JSON.parse(raw)
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
+}
 
 export const useCartStore = defineStore('cart', {
   state: () => ({
-    items: JSON.parse(localStorage.getItem('cart')) || [],
+    items: safeParseCart(localStorage.getItem(getCartKey())),
   }),
 
   getters: {
@@ -12,19 +28,52 @@ export const useCartStore = defineStore('cart', {
   },
 
   actions: {
-    // ✅ Thêm vào giỏ — kiểm tra stock
+    // Load lại cart theo đúng user hiện tại (gọi khi login/logout/F5)
+    loadCart() {
+      this.items = safeParseCart(localStorage.getItem(getCartKey()))
+    },
+
+    // Reset cart trong RAM (KHÔNG xoá dữ liệu trong localStorage)
+    clearCartOnLogout() {
+      this.items = []
+    },
+
+    // ✅ Gộp giỏ guest vào giỏ user khi đăng nhập — không ghi đè, không mất dữ liệu
+    mergeGuestCartIntoUser(userId) {
+      const guestItems = safeParseCart(localStorage.getItem('cart_guest'))
+      if (guestItems.length === 0) {
+        localStorage.removeItem('cart_guest')
+        return
+      }
+
+      const userCartKey = `cart_${userId}`
+      const userItems = safeParseCart(localStorage.getItem(userCartKey))
+
+      // Gộp theo id sản phẩm, cộng số lượng nếu trùng
+      guestItems.forEach((guestItem) => {
+        const existing = userItems.find((i) => i.id === guestItem.id)
+        if (existing) {
+          const maxQty = existing.stock ?? 999
+          existing.quantity = Math.min(existing.quantity + guestItem.quantity, maxQty)
+        } else {
+          userItems.push(guestItem)
+        }
+      })
+
+      localStorage.setItem(userCartKey, JSON.stringify(userItems))
+      localStorage.removeItem('cart_guest')
+    },
+
     addToCart(product, quantity = 1) {
       const productId = product._id || product.id
-      const stock = product.stock ?? 999  // nếu không có stock thì không giới hạn
-
-      const existingItem = this.items.find(item => item.id === productId)
+      const stock = product.stock ?? 999
+      const existingItem = this.items.find((item) => item.id === productId)
 
       if (existingItem) {
-        // Kiểm tra không vượt stock
         const newQty = existingItem.quantity + quantity
         if (newQty > stock) {
           alert(`Chỉ còn ${stock} sản phẩm trong kho!`)
-          existingItem.quantity = stock  // giới hạn tại stock
+          existingItem.quantity = stock
         } else {
           existingItem.quantity = newQty
         }
@@ -39,15 +88,14 @@ export const useCartStore = defineStore('cart', {
           price: product.price,
           image: product.image,
           quantity,
-          stock,  // ✅ Lưu stock để kiểm tra khi tăng số lượng
+          stock,
         })
       }
       this.saveCart()
     },
 
-    // ✅ Cập nhật số lượng — kiểm tra stock
     updateQuantity(productId, quantity) {
-      const item = this.items.find(item => item.id === productId)
+      const item = this.items.find((item) => item.id === productId)
       if (!item) return
 
       if (quantity <= 0) {
@@ -55,19 +103,15 @@ export const useCartStore = defineStore('cart', {
         return
       }
 
-      // Kiểm tra không vượt stock
       const maxQty = item.stock ?? 999
-      if (quantity > maxQty) {
-        alert(`Chỉ còn ${maxQty} sản phẩm trong kho!`)
-        item.quantity = maxQty
-      } else {
-        item.quantity = quantity
-      }
+      item.quantity = Math.min(quantity, maxQty)
+      if (quantity > maxQty) alert(`Chỉ còn ${maxQty} sản phẩm trong kho!`)
+
       this.saveCart()
     },
 
     removeFromCart(productId) {
-      this.items = this.items.filter(item => item.id !== productId)
+      this.items = this.items.filter((item) => item.id !== productId)
       this.saveCart()
     },
 
@@ -77,7 +121,7 @@ export const useCartStore = defineStore('cart', {
     },
 
     saveCart() {
-      localStorage.setItem('cart', JSON.stringify(this.items))
+      localStorage.setItem(getCartKey(), JSON.stringify(this.items))
     },
-  }
+  },
 })

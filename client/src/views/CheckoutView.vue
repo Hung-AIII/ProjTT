@@ -14,7 +14,7 @@
           <span class="text-light">Tổng cộng</span>
           <span class="text-gold">{{ formatPrice(cartStore.totalPrice) }}</span>
         </div>
-        <div class="mt-4 p-4 bg-gold/10 border border-gold/20 rounded-lg">
+        <div v-if="paymentMethod === 'bank'" class="mt-4 p-4 bg-gold/10 border border-gold/20 rounded-lg">
           <p class="text-light font-semibold">🏦 Chuyển khoản:</p>
           <p class="text-muted text-sm">Ngân hàng: MB Bank</p>
           <p class="text-muted text-sm">Chủ TK: Nguyễn Hữu Hùng</p>
@@ -42,11 +42,27 @@
             <input type="text" v-model="shippingInfo.address" required
                    class="w-full bg-dark2 border border-white/10 rounded-lg px-4 py-3 text-light placeholder-muted focus:border-gold focus:outline-none" />
           </div>
-          <div>
+         <div>
             <label class="block text-light text-sm font-semibold">Ghi chú</label>
             <textarea v-model="shippingInfo.note" rows="2"
                       class="w-full bg-dark2 border border-white/10 rounded-lg px-4 py-3 text-light placeholder-muted focus:border-gold focus:outline-none resize-none"></textarea>
           </div>
+
+          <!-- ✅ THÊM: Chọn phương thức thanh toán -->
+          <div>
+            <label class="block text-light text-sm font-semibold mb-2">Phương thức thanh toán *</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2 cursor-pointer text-light text-sm">
+                <input type="radio" v-model="paymentMethod" value="cod" />
+                🚚 Thanh toán khi nhận hàng (COD)
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer text-light text-sm">
+                <input type="radio" v-model="paymentMethod" value="bank" />
+                🏦 Chuyển khoản
+              </label>
+            </div>
+          </div>
+
           <button type="submit" class="bg-gold text-dark w-full py-3 rounded hover:bg-goldHover transition-all font-semibold tracking-wider">Xác nhận đặt hàng</button>
         </form>
       </div>

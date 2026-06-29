@@ -66,14 +66,24 @@
 
 <script setup>
 import { useCartStore } from '../stores/cart'
+import { useAuthStore } from '../stores/auth'
+import { watch } from 'vue'
 
 const cartStore = useCartStore()
+const authStore = useAuthStore()
+
+// ✅ Khi user login, reload cart
+watch(() => authStore.user, () => {
+  cartStore.loadCart()
+})
+
 const formatPrice = (price) =>
   new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)
 
 const removeItem = (id) => {
   if (confirm('Xóa món này khỏi giỏ?')) cartStore.removeFromCart(id)
 }
+
 const clearCart = () => {
   if (confirm('Xóa hết giỏ hàng?')) cartStore.clearCart()
 }

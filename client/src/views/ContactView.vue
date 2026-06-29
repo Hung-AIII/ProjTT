@@ -53,7 +53,6 @@
 import { ref } from 'vue'
 import axios from 'axios'
 
-
 const form = ref({ name: '', email: '', subject: '', message: '' })
 const successMessage = ref('')
 
@@ -65,10 +64,13 @@ const handleSubmit = async () => {
       subject: form.value.subject,
       message: form.value.message
     })
-    submitted.value = true
+
+    successMessage.value = 'Gửi tin nhắn thành công! Cảm ơn bạn đã liên hệ.'
     form.value = { name: '', email: '', subject: '', message: '' }
+
+    setTimeout(() => { successMessage.value = '' }, 4000)
   } catch (error) {
-    alert('Gửi thất bại, vui lòng thử lại')
+    alert(error.response?.data?.message || 'Gửi thất bại, vui lòng thử lại')
   }
 }
 </script>

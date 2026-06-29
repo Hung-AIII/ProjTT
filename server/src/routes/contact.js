@@ -1,11 +1,21 @@
-const mongoose = require('mongoose')
+// server/src/routes/contact.js
+const express = require('express')
+const router = express.Router()
+const {
+  createContact,
+  getContacts,
+  markAsRead,
+} = require('../controllers/contactController')
+const { protect } = require('../middleware/auth')
+const { admin } = require('../middleware/admin')
 
-const ContactSchema = new mongoose.Schema({
-  name:    { type: String, required: true },
-  email:   { type: String, required: true },
-  subject: { type: String, default: '' },
-  message: { type: String, required: true },
-  isRead:  { type: Boolean, default: false }
-}, { timestamps: true })
+// @route   POST /api/contact   - user (không cần đăng nhập) gửi liên hệ
+router.post('/', createContact)
 
-module.exports = mongoose.model('Contact', ContactSchema)
+// @route   GET /api/contact    - chỉ admin xem danh sách liên hệ
+router.get('/', protect, admin, getContacts)
+
+// @route   PUT /api/contact/:id/read - admin đánh dấu đã đọc
+router.put('/:id/read', protect, admin, markAsRead)
+
+module.exports = router
