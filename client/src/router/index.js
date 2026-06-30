@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
+import ForgotPasswordView from '../views/ForgotPasswordView.vue'
+import ResetPasswordView from '../views/ResetPasswordView.vue'
 
 // Public routes
 import HomeView from '../views/HomeView.vue'
@@ -19,6 +21,8 @@ import AdminContactsView from '../views/admin/AdminContactsView.vue'
 import DashboardView from '../views/admin/DashboardView.vue'
 import AdminProductsView from '../views/admin/AdminProductsView.vue'
 import AdminOrdersView from '../views/admin/AdminOrdersView.vue'
+import ProductReviewsView from '../views/ProductReviewsView.vue'
+import AdminReviewsView from '../views/admin/AdminReviewsView.vue'
 
 const routes = [
   {
@@ -99,12 +103,36 @@ const routes = [
     component: NotFound,
     meta: { title: '404 - Không tìm thấy' }
   },
+  { 
+    path: '/forgot-password', 
+    name: 'forgot-password', 
+    component: ForgotPasswordView, 
+    meta: { title: 'Quên mật khẩu' } 
+  },
+  { 
+    path: '/reset-password/:token', 
+    name: 'reset-password', 
+    component: ResetPasswordView, 
+    meta: { title: 'Đặt lại mật khẩu' } 
+  },
+  { 
+    path: '/products/:id/reviews', 
+    name: 'product-reviews', 
+    component: ProductReviewsView, 
+    meta: { title: 'Đánh giá sản phẩm' } 
+  },
   {
-  path: '/admin/contacts',
-  name: 'AdminContacts',
-  component: AdminContactsView,
-  meta: { title: 'Tin nhắn', requiresAuth: true, requiresAdmin: true }
-}
+    path: '/admin/reviews',
+    name: 'admin-reviews',
+    component: AdminReviewsView,
+    meta: { title: 'Quản lý đánh giá', requiresAdmin: true }, // dùng đúng key meta admin bạn đang áp dụng cho các route admin khác
+  },
+  {
+    path: '/admin/contacts',
+    name: 'AdminContacts',
+    component: AdminContactsView,
+    meta: { title: 'Tin nhắn', requiresAuth: true, requiresAdmin: true }
+  }
 ]
 
 

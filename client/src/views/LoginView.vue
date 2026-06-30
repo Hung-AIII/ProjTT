@@ -20,6 +20,11 @@
           <input type="password" v-model="password" placeholder="Nhập mật khẩu" required
                  class="w-full bg-dark2 border border-white/10 rounded-lg px-4 py-3 text-light placeholder-muted focus:border-gold focus:outline-none" />
         </div>
+        <div v-if="isLogin" class="text-right -mt-2">
+          <router-link to="/forgot-password" class="text-gold text-sm hover:text-goldHover transition">
+            Quên mật khẩu?
+          </router-link>
+        </div>
         <button type="submit" class="bg-gold text-dark w-full py-3 rounded hover:bg-goldHover transition-all font-semibold tracking-wider" :disabled="loading">
           {{ loading ? 'Đang xử lý...' : (isLogin ? 'Đăng nhập' : 'Tạo tài khoản') }}
         </button>

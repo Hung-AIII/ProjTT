@@ -292,6 +292,6 @@ const saveStock = async () => {
 }
 
 onMounted(() => {
-  productsStore.fetchProducts()
+  productsStore.fetchAllProductsForAdmin()
 })
 </script>

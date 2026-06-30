@@ -39,6 +39,10 @@
                          class="block px-4 py-2.5 text-light hover:bg-gold/10 hover:text-gold transition text-sm">📋 Đơn hàng</router-link>
             <router-link to="/admin/contacts" @click="showAdminMenu = false"
                          class="block px-4 py-2.5 text-light hover:bg-gold/10 hover:text-gold transition text-sm">💬 Tin nhắn</router-link>
+            <router-link to="/admin/contacts" @click="showAdminMenu = false"
+                         class="block px-4 py-2.5 text-light hover:bg-gold/10 hover:text-gold transition text-sm">💬 Tin nhắn</router-link>
+            <router-link to="/admin/reviews" @click="showAdminMenu = false"
+                         class="block px-4 py-2.5 text-light hover:bg-gold/10 hover:text-gold transition text-sm">⭐ Đánh giá</router-link>
             <router-link to="/orders" @click="showAdminMenu = false"
                          class="block px-4 py-2.5 text-light hover:bg-gold/10 hover:text-gold transition text-sm border-t border-white/5">📋 Lịch sử đơn hàng</router-link>
           </div>

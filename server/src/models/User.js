@@ -25,6 +25,13 @@ const UserSchema = new mongoose.Schema(
       enum: ['user', 'admin'],
       default: 'user',
     },
+    // ✅ Thêm cho tính năng "Quên mật khẩu"
+    resetPasswordToken: {
+      type: String,
+    },
+    resetPasswordExpire: {
+      type: Date,
+    },
   },
   {
     timestamps: true,

@@ -28,6 +28,16 @@
           {{ product.stock > 0 ? '🛒 Thêm vào giỏ' : '⚠ Hết hàng' }}
         </button>
         <router-link to="/products" class="block text-muted hover:text-gold transition text-center mt-3 italic">← Quay lại cửa hàng</router-link>
+        <router-link :to="`/products/${product._id}/reviews`"
+                     class="flex items-center justify-between mt-8 p-4 bg-dark2 border border-white/10 rounded-lg hover:border-gold/50 transition">
+          <span class="text-light font-semibold">
+            ⭐ {{ product.numReviews || 0 }} đánh giá
+            <span v-if="product.averageRating" class="text-gold ml-1">
+              ({{ product.averageRating.toFixed(1) }}/5)
+            </span>
+          </span>
+          <span class="text-gold text-sm">Xem tất cả →</span>
+        </router-link>
       </div>
     </div>
     <div v-else-if="loading" class="text-muted text-center py-20 italic">Đang tải...</div>
@@ -40,11 +50,14 @@ import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useProductsStore } from '../stores/products'
 import { useCartStore } from '../stores/cart'
+import { useAuthStore } from '../stores/auth'
+import axios from 'axios'
 
 const route = useRoute()
 const router = useRouter()
 const productsStore = useProductsStore()
 const cartStore = useCartStore()
+const authStore = useAuthStore()
 
 const product = ref(null)
 const loading = ref(true)
@@ -62,10 +75,14 @@ const addToCart = () => {
   alert('Đã bỏ vào giỏ hàng! 🛒')
 }
 
-onMounted(async () => {
+// ===== ĐÁNH GIÁ SẢN PHẨM =====
+const reviewForm = ref({ rating: '', comment: '' })
+const reviewLoading = ref(false)
+const reviewError = ref('')
+
+const fetchProduct = async () => {
   const id = route.params.id
   try {
-    // ✅ Gọi API thật thay vì chỉ tìm trong store local
     const data = await productsStore.fetchProductById(id)
     if (data) product.value = data
     else router.push('/products')
@@ -74,5 +91,21 @@ onMounted(async () => {
   } finally {
     loading.value = false
   }
-})
+}
+
+const submitReview = async () => {
+  reviewError.value = ''
+  reviewLoading.value = true
+  try {
+    await axios.post(`/api/products/${product.value._id}/reviews`, reviewForm.value)
+    reviewForm.value = { rating: '', comment: '' }
+    await fetchProduct() // load lại sản phẩm để cập nhật danh sách review + averageRating mới
+  } catch (error) {
+    reviewError.value = error.response?.data?.message || 'Gửi đánh giá thất bại'
+  } finally {
+    reviewLoading.value = false
+  }
+}
+
+onMounted(fetchProduct)
 </script>
