@@ -4,7 +4,7 @@
     "price": 450000,
     "image": "/images/products/1.jpg",
     "category": "Áo sơ mi",
-    "description": "Chất liệu denim cao cấp, phong cách hiện đại."
+    "description": "Chất liệu denim cao cấp, phong cách hiện đại." 
   },
   {
     "name": "Sơ mi trắng cổ đức",
@@ -35,110 +35,115 @@
     "description": "Họa tiết chấm bi vintage, phong cách retro."
   },
   {
-    "name": "Áo thun cotton premium",
+    "name": "Áo sơ mi thun cotton premium",
     "price": 220000,
     "image": "/images/products/6.jpg",
-    "category": "Áo thun",
+    "category": "Áo sơ mi",
     "description": "Cotton 100%, mềm mại, thoáng khí."
   },
   {
-    "name": "Áo thun polo cao cấp",
+    "name": "Áo sơ mi thun polo cao cấp",
     "price": 320000,
     "image": "/images/products/7.jpg",
-    "category": "Áo thun",
+    "category": "Áo sơ mi",
     "description": "Polo cổ bẻ, chất liệu pique cao cấp."
   },
   {
-    "name": "Áo thun graphic vintage",
+    "name": "Áo sơ mi thun graphic vintage",
     "price": 250000,
     "image": "/images/products/8.jpg",
-    "category": "Áo thun",
+    "category": "Áo sơ mi",
     "description": "In hình vintage độc đáo, phong cách streetwear."
   },
   {
-    "name": "Áo thun tay lỡ basic",
+    "name": "Áo sơ mi thun tay lỡ basic",
     "price": 190000,
     "image": "/images/products/9.jpg",
-    "category": "Áo thun",
+    "category": "Áo sơ mi",
     "description": "Basic tay lỡ, dễ phối đồ, chất vải dày dặn."
   },
   {
-    "name": "Áo thun oversize unisex",
+    "name": "Áo sơ mi thun oversize unisex",
     "price": 270000,
     "image": "/images/products/10.jpg",
-    "category": "Áo thun",
+    "category": "Áo sơ mi",
     "description": "Phong cách oversize, phù hợp cả nam và nữ."
   },
   {
-    "name": "Áo khoác da bò cao cấp",
+    "name": "Áo sơ mi khoác da bò cao cấp",
     "price": 1250000,
     "image": "/images/products/11.jpg",
-    "category": "Áo khoác",
+    "category": "Áo sơ mi",
     "description": "Da bò thật, bền đẹp theo thời gian."
   },
   {
-    "name": "Áo khoác bomber jacket",
+    "name": "Áo sơ mi khoác bomber jacket",
     "price": 890000,
     "image": "/images/products/12.jpg",
-    "category": "Áo khoác",
+    "category": "Áo sơ mi",
     "description": "Bomber jacket phong cách quân đội, ấm áp."
   },
   {
-    "name": "Áo khoác trench coat",
+    "name": "Áo sơ mi khoác trench coat",
     "price": 1450000,
     "image": "/images/products/13.jpg",
-    "category": "Áo khoác",
+    "category": "Áo sơ mi",
     "description": "Trench coat thanh lịch, phù hợp mùa thu."
   },
   {
-    "name": "Áo khoác denim jacket",
+    "name": "Áo sơ mi khoác denim jacket",
     "price": 650000,
     "image": "/images/products/14.jpg",
-    "category": "Áo khoác",
-    "description": "Áo khoác denim cá tính, phong cách trẻ trung."
+    "category": "Áo sơ mi",
+    "description": "Áo sơ mi khoác denim cá tính, phong cách trẻ trung."
   },
   {
-    "name": "Áo khoác lông cừu",
+    "name": "Áo sơ mi khoác lông cừu",
     "price": 980000,
     "image": "/images/products/15.jpg",
-    "category": "Áo khoác",
+    "category": "Áo sơ mi",
     "description": "Lông cừu ấm áp, sang trọng và thời thượng."
   },
   {
-    "name": "Áo len cổ lọ cao cấp",
+    "name": "Áo sơ mi len cổ lọ cao cấp",
     "price": 480000,
     "image": "/images/products/16.jpg",
-    "category": "Áo len",
+    "category": "Áo sơ mi",
     "description": "Len cao cấp, ấm áp, thanh lịch."
   },
   {
-    "name": "Áo len cardigan mỏng",
+    "name": "Áo sơ mi len cardigan mỏng",
     "price": 420000,
     "image": "/images/products/17.jpg",
-    "category": "Áo len",
+    "category": "Áo sơ mi",
     "description": "Cardigan mỏng nhẹ, dễ dàng phối đồ."
   },
   {
-    "name": "Áo len họa tiết Scandinavian",
+    "name": "Áo sơ mi len họa tiết Scandinavian",
     "price": 550000,
     "image": "/images/products/18.jpg",
-    "category": "Áo len",
+    "category": "Áo sơ mi",
     "description": "Họa tiết Bắc Âu truyền thống, ấm áp."
   },
   {
-    "name": "Áo len cổ tròn basic",
+    "name": "Áo sơ mi len cổ tròn basic",
     "price": 350000,
     "image": "/images/products/19.jpg",
-    "category": "Áo len",
+    "category": "Áo sơ mi",
     "description": "Cổ tròn basic, phối được nhiều kiểu."
   },
   {
-    "name": "Áo len turtle neck",
+    "name": "Áo sơ mi len turtle neck",
     "price": 510000,
     "image": "/images/products/20.jpg",
-    "category": "Áo len",
+    "category": "Áo sơ mi",
     "description": "Cổ lọ cao cấp, phong cách châu Âu."
   },
+
+
+
+
+
   {
     "name": "Váy đen thanh lịch",
     "price": 680000,
@@ -178,175 +183,974 @@
     "name": "Quần âu nam công sở",
     "price": 520000,
     "image": "/images/products/26.jpg",
-    "category": "Quần",
+    "category": "Váy",
     "description": "Quần âu form chuẩn, chất vải cao cấp."
   },
   {
     "name": "Quần jean skinny nam",
     "price": 450000,
     "image": "/images/products/27.jpg",
-    "category": "Quần",
+    "category": "Váy",
     "description": "Jeans skinny, phong cách trẻ trung, năng động."
   },
   {
     "name": "Quần jogger thể thao",
     "price": 310000,
     "image": "/images/products/28.jpg",
-    "category": "Quần",
+    "category": "Váy",
     "description": "Jogger thoải mái, phong cách thể thao năng động."
   },
   {
     "name": "Quần tây nữ ống suông",
     "price": 480000,
     "image": "/images/products/29.jpg",
-    "category": "Quần",
+    "category": "Váy",
     "description": "Ống suông thanh lịch, phù hợp công sở."
   },
   {
     "name": "Quần short denim nữ",
     "price": 280000,
     "image": "/images/products/30.jpg",
-    "category": "Quần",
+    "category": "Váy",
     "description": "Short denim trẻ trung, cá tính cho mùa hè."
   },
   {
     "name": "Chân váy midi xếp ly",
     "price": 350000,
     "image": "/images/products/31.jpg",
-    "category": "Chân váy",
+    "category": "Váy",
     "description": "Xếp ly thanh lịch, phong cách nữ tính."
   },
   {
     "name": "Chân váy bút chì công sở",
     "price": 420000,
     "image": "/images/products/32.jpg",
-    "category": "Chân váy",
+    "category": "Váy",
     "description": "Bút chì ôm dáng, sang trọng cho văn phòng."
   },
   {
     "name": "Chân váy xòe jean",
     "price": 380000,
     "image": "/images/products/33.jpg",
-    "category": "Chân váy",
+    "category": "Váy",
     "description": "Xòe jean phong cách retro, trẻ trung."
   },
   {
     "name": "Chân váy tennis trắng",
     "price": 290000,
     "image": "/images/products/34.jpg",
-    "category": "Chân váy",
+    "category": "Váy",
     "description": "Phong cách tennis năng động, trẻ trung."
   },
   {
     "name": "Chân váy da đen",
     "price": 460000,
     "image": "/images/products/35.jpg",
-    "category": "Chân váy",
+    "category": "Váy",
     "description": "Chất da bóng, phong cách cá tính và sang trọng."
   },
   {
-    "name": "Áo hoodie unisex",
+    "name": "Áo sơ mi hoodie unisex",
     "price": 390000,
     "image": "/images/products/36.jpg",
-    "category": "Áo hoodie",
+    "category": "Váy",
     "description": "Hoodie ấm áp, phong cách streetwear."
   },
   {
     "name": "Hoodie cổ trễ oversized",
     "price": 450000,
     "image": "/images/products/37.jpg",
-    "category": "Áo hoodie",
+    "category": "Váy",
     "description": "Oversized cổ trễ, phong cách K-pop."
   },
   {
     "name": "Hoodie zip-up basic",
     "price": 410000,
     "image": "/images/products/38.jpg",
-    "category": "Áo hoodie",
+    "category": "Váy",
     "description": "Basic zip-up, dễ dàng mặc hằng ngày."
   },
   {
     "name": "Hoodie họa tiết vintage",
     "price": 470000,
     "image": "/images/products/39.jpg",
-    "category": "Áo hoodie",
+    "category": "Váy",
     "description": "Họa tiết vintage độc đáo."
   },
   {
-    "name": "Áo blazer nữ công sở",
+    "name": "Áo sơ mi blazer nữ công sở",
     "price": 790000,
     "image": "/images/products/40.jpg",
-    "category": "Áo blazer",
+    "category": "Váy",
     "description": "Blazer nữ phong cách công sở, sang trọng."
   },
+
+
+
+
+
   {
     "name": "Blazer nam form chuẩn",
     "price": 850000,
     "image": "/images/products/41.jpg",
-    "category": "Áo blazer",
+    "category": "Quần",
     "description": "Blazer nam form chuẩn, lịch lãm và sang trọng."
   },
   {
     "name": "Blazer cổ ve chéo",
     "price": 920000,
     "image": "/images/products/42.jpg",
-    "category": "Áo blazer",
+    "category": "Quần",
     "description": "Cổ ve chéo phong cách châu Âu."
   },
   {
-    "name": "Áo tập gym thể thao",
+    "name": "Áo sơ mi tập gym thể thao",
     "price": 210000,
     "image": "/images/products/43.jpg",
-    "category": "Áo thể thao",
+    "category": "Quần",
     "description": "Chất vải thấm hút mồ hôi, thoải mái vận động."
   },
   {
-    "name": "Áo chạy bộ nam",
+    "name": "Áo sơ mi chạy bộ nam",
     "price": 230000,
     "image": "/images/products/44.jpg",
-    "category": "Áo thể thao",
+    "category": "Quần",
     "description": "Thoáng khí, nhẹ nhàng cho mọi hoạt động."
   },
   {
-    "name": "Áo yoga nữ",
+    "name": "Áo sơ mi yoga nữ",
     "price": 260000,
     "image": "/images/products/45.jpg",
-    "category": "Áo thể thao",
+    "category": "Quần",
     "description": "Chất vải co giãn 4 chiều, thoải mái tập luyện."
   },
   {
     "name": "Bộ đồ ngủ satin cao cấp",
     "price": 590000,
     "image": "/images/products/46.jpg",
-    "category": "Đồ ngủ",
+    "category": "Quần",
     "description": "Chất satin mềm mại, sang trọng, thoải mái."
   },
   {
-    "name": "Áo ngủ cotton mềm",
+    "name": "Áo sơ mi ngủ cotton mềm",
     "price": 320000,
     "image": "/images/products/47.jpg",
-    "category": "Đồ ngủ",
+    "category": "Quần",
     "description": "Cotton 100%, mềm mại, dễ chịu cho giấc ngủ."
   },
   {
     "name": "Khăn quàng cổ cashmere",
     "price": 420000,
     "image": "/images/products/48.jpg",
-    "category": "Phụ kiện",
+    "category": "Quần",
     "description": "Cashmere cao cấp, ấm áp và sang trọng."
   },
   {
     "name": "Găng tay da",
     "price": 350000,
     "image": "/images/products/49.jpg",
-    "category": "Phụ kiện",
+    "category": "Quần",
     "description": "Da thật, tinh tế và bền bỉ."
   },
   {
     "name": "Mũ fedora thanh lịch",
     "price": 290000,
     "image": "/images/products/50.jpg",
+    "category": "Quần",
+    "description": "Mũ fedora phong cách cổ điển, sang trọng."
+  },
+    {
+    "name": "Áo sơ mi denim cao cấp",
+    "price": 450000,
+    "image": "/images/products/51.jpg",
+    "category": "Quần",
+    "description": "Chất liệu denim cao cấp, phong cách hiện đại."
+  },
+  {
+    "name": "Sơ mi trắng cổ đức",
+    "price": 410000,
+    "image": "/images/products/52.jpg",
+    "category": "Quần",
+    "description": "Sơ mi trắng cổ đức lịch lãm, phù hợp công sở."
+  },
+  {
+    "name": "Sơ mi kẻ sọc thanh lịch",
+    "price": 380000,
+    "image": "/images/products/53.jpg",
+    "category": "Quần",
+    "description": "Họa tiết kẻ sọc tinh tế, chất vải mềm mại."
+  },
+  {
+    "name": "Áo sơ mi linen trắng",
+    "price": 520000,
+    "image": "/images/products/54.jpg",
+    "category": "Quần",
+    "description": "Chất liệu linen thoáng mát, sang trọng."
+  },
+  {
+    "name": "Sơ mi họa tiết chấm bi",
+    "price": 360000,
+    "image": "/images/products/55.jpg",
+    "category": "Quần",
+    "description": "Họa tiết chấm bi vintage, phong cách retro."
+  },
+  {
+    "name": "Áo sơ mi thun cotton premium",
+    "price": 220000,
+    "image": "/images/products/56.jpg",
+    "category": "Quần",
+    "description": "Cotton 100%, mềm mại, thoáng khí."
+  },
+  {
+    "name": "Áo sơ mi thun polo cao cấp",
+    "price": 320000,
+    "image": "/images/products/57.jpg",
+    "category": "Quần",
+    "description": "Polo cổ bẻ, chất liệu pique cao cấp."
+  },
+  {
+    "name": "Áo sơ mi thun graphic vintage",
+    "price": 250000,
+    "image": "/images/products/58.jpg",
+    "category": "Quần",
+    "description": "In hình vintage độc đáo, phong cách streetwear."
+  },
+  {
+    "name": "Áo sơ mi thun tay lỡ basic",
+    "price": 190000,
+    "image": "/images/products/59.jpg",
+    "category": "Quần",
+    "description": "Basic tay lỡ, dễ phối đồ, chất vải dày dặn."
+  },
+  {
+    "name": "Áo sơ mi thun oversize unisex",
+    "price": 270000,
+    "image": "/images/products/60.jpg",
+    "category": "Quần",
+    "description": "Phong cách oversize, phù hợp cả nam và nữ."
+  },
+
+
+
+
+  {
+    "name": "Áo sơ mi khoác da bò cao cấp",
+    "price": 1250000,
+    "image": "/images/products/61.jpg",
+    "category": "Đồ ngủ",
+    "description": "Da bò thật, bền đẹp theo thời gian."
+  },
+  {
+    "name": "Áo sơ mi khoác bomber jacket",
+    "price": 890000,
+    "image": "/images/products/62.jpg",
+    "category": "Đồ ngủ",
+    "description": "Bomber jacket phong cách quân đội, ấm áp."
+  },
+  {
+    "name": "Áo sơ mi khoác trench coat",
+    "price": 1450000,
+    "image": "/images/products/63.jpg",
+    "category": "Đồ ngủ",
+    "description": "Trench coat thanh lịch, phù hợp mùa thu."
+  },
+  {
+    "name": "Áo sơ mi khoác denim jacket",
+    "price": 650000,
+    "image": "/images/products/64.jpg",
+    "category": "Đồ ngủ",
+    "description": "Áo sơ mi khoác denim cá tính, phong cách trẻ trung."
+  },
+  {
+    "name": "Áo sơ mi khoác lông cừu",
+    "price": 980000,
+    "image": "/images/products/65.jpg",
+    "category": "Đồ ngủ",
+    "description": "Lông cừu ấm áp, sang trọng và thời thượng."
+  },
+  {
+    "name": "Áo sơ mi len cổ lọ cao cấp",
+    "price": 480000,
+    "image": "/images/products/66.jpg",
+    "category": "Đồ ngủ",
+    "description": "Len cao cấp, ấm áp, thanh lịch."
+  },
+  {
+    "name": "Áo sơ mi len cardigan mỏng",
+    "price": 420000,
+    "image": "/images/products/67.jpg",
+    "category": "Đồ ngủ",
+    "description": "Cardigan mỏng nhẹ, dễ dàng phối đồ."
+  },
+  {
+    "name": "Áo sơ mi len họa tiết Scandinavian",
+    "price": 550000,
+    "image": "/images/products/68.jpg",
+    "category": "Đồ ngủ",
+    "description": "Họa tiết Bắc Âu truyền thống, ấm áp."
+  },
+  {
+    "name": "Áo sơ mi len cổ tròn basic",
+    "price": 350000,
+    "image": "/images/products/69.jpg",
+    "category": "Đồ ngủ",
+    "description": "Cổ tròn basic, phối được nhiều kiểu."
+  },
+  {
+    "name": "Áo sơ mi len turtle neck",
+    "price": 510000,
+    "image": "/images/products/70.jpg",
+    "category": "Đồ ngủ",
+    "description": "Cổ lọ cao cấp, phong cách châu Âu."
+  },
+  {
+    "name": "Váy đen thanh lịch",
+    "price": 680000,
+    "image": "/images/products/71.jpg",
+    "category": "Đồ ngủ",
+    "description": "Váy đen tối giản, sang trọng cho mọi dịp."
+  },
+  {
+    "name": "Váy hoa nhí nữ tính",
+    "price": 560000,
+    "image": "/images/products/72.jpg",
+    "category": "Đồ ngủ",
+    "description": "Hoa nhí ngọt ngào, chất liệu bay bổng."
+  },
+  {
+    "name": "Váy midi xếp ly",
+    "price": 490000,
+    "image": "/images/products/73.jpg",
+    "category": "Đồ ngủ",
+    "description": "Xếp ly tinh tế, phong cách thanh lịch."
+  },
+  {
+    "name": "Váy maxi dáng dài",
+    "price": 720000,
+    "image": "/images/products/74.jpg",
+    "category": "Đồ ngủ",
+    "description": "Váy dài thướt tha, bay bổng và sang trọng."
+  },
+  {
+    "name": "Váy bodycon ôm dáng",
+    "price": 610000,
+    "image": "/images/products/75.jpg",
+    "category": "Đồ ngủ",
+    "description": "Ôm dáng gợi cảm, tôn lên vẻ đẹp hình thể."
+  },
+  {
+    "name": "Quần âu nam công sở",
+    "price": 520000,
+    "image": "/images/products/76.jpg",
+    "category": "Đồ ngủ",
+    "description": "Quần âu form chuẩn, chất vải cao cấp."
+  },
+  {
+    "name": "Quần jean skinny nam",
+    "price": 450000,
+    "image": "/images/products/77.jpg",
+    "category": "Đồ ngủ",
+    "description": "Jeans skinny, phong cách trẻ trung, năng động."
+  },
+  {
+    "name": "Quần jogger thể thao",
+    "price": 310000,
+    "image": "/images/products/78.jpg",
+    "category": "Đồ ngủ",
+    "description": "Jogger thoải mái, phong cách thể thao năng động."
+  },
+  {
+    "name": "Quần tây nữ ống suông",
+    "price": 480000,
+    "image": "/images/products/79.jpg",
+    "category": "Đồ ngủ",
+    "description": "Ống suông thanh lịch, phù hợp công sở."
+  },
+  {
+    "name": "Quần short denim nữ",
+    "price": 280000,
+    "image": "/images/products/80.jpg",
+    "category": "Đồ ngủ",
+    "description": "Short denim trẻ trung, cá tính cho mùa hè."
+  },
+
+
+
+
+
+  {
+    "name": "Chân váy midi xếp ly",
+    "price": 350000,
+    "image": "/images/products/81.jpg",
+    "category": "Chân váy",
+    "description": "Xếp ly thanh lịch, phong cách nữ tính."
+  },
+  {
+    "name": "Chân váy bút chì công sở",
+    "price": 420000,
+    "image": "/images/products/82.jpg",
+    "category": "Chân váy",
+    "description": "Bút chì ôm dáng, sang trọng cho văn phòng."
+  },
+  {
+    "name": "Chân váy xòe jean",
+    "price": 380000,
+    "image": "/images/products/83.jpg",
+    "category": "Chân váy",
+    "description": "Xòe jean phong cách retro, trẻ trung."
+  },
+  {
+    "name": "Chân váy tennis trắng",
+    "price": 290000,
+    "image": "/images/products/84.jpg",
+    "category": "Chân váy",
+    "description": "Phong cách tennis năng động, trẻ trung."
+  },
+  {
+    "name": "Chân váy da đen",
+    "price": 460000,
+    "image": "/images/products/85.jpg",
+    "category": "Chân váy",
+    "description": "Chất da bóng, phong cách cá tính và sang trọng."
+  },
+  {
+    "name": "Áo sơ mi hoodie unisex",
+    "price": 390000,
+    "image": "/images/products/86.jpg",
+    "category": "Chân váy",
+    "description": "Hoodie ấm áp, phong cách streetwear."
+  },
+  {
+    "name": "Hoodie cổ trễ oversized",
+    "price": 450000,
+    "image": "/images/products/87.jpg",
+    "category": "Chân váy",
+    "description": "Oversized cổ trễ, phong cách K-pop."
+  },
+  {
+    "name": "Hoodie zip-up basic",
+    "price": 410000,
+    "image": "/images/products/88.jpg",
+    "category": "Chân váy",
+    "description": "Basic zip-up, dễ dàng mặc hằng ngày."
+  },
+  {
+    "name": "Hoodie họa tiết vintage",
+    "price": 470000,
+    "image": "/images/products/89.jpg",
+    "category": "Chân váy",
+    "description": "Họa tiết vintage độc đáo."
+  },
+  {
+    "name": "Áo sơ mi blazer nữ công sở",
+    "price": 790000,
+    "image": "/images/products/90.jpg",
+    "category": "Chân váy",
+    "description": "Blazer nữ phong cách công sở, sang trọng."
+  },
+  {
+    "name": "Blazer nam form chuẩn",
+    "price": 850000,
+    "image": "/images/products/91.jpg",
+    "category": "Chân váy",
+    "description": "Blazer nam form chuẩn, lịch lãm và sang trọng."
+  },
+  {
+    "name": "Blazer cổ ve chéo",
+    "price": 920000,
+    "image": "/images/products/92.jpg",
+    "category": "Chân váy",
+    "description": "Cổ ve chéo phong cách châu Âu."
+  },
+  {
+    "name": "Áo sơ mi tập gym thể thao",
+    "price": 210000,
+    "image": "/images/products/93.jpg",
+    "category": "Chân váy",
+    "description": "Chất vải thấm hút mồ hôi, thoải mái vận động."
+  },
+  {
+    "name": "Áo sơ mi chạy bộ nam",
+    "price": 230000,
+    "image": "/images/products/94.jpg",
+    "category": "Chân váy",
+    "description": "Thoáng khí, nhẹ nhàng cho mọi hoạt động."
+  },
+  {
+    "name": "Áo sơ mi yoga nữ",
+    "price": 260000,
+    "image": "/images/products/95.jpg",
+    "category": "Chân váy",
+    "description": "Chất vải co giãn 4 chiều, thoải mái tập luyện."
+  },
+  {
+    "name": "Bộ đồ ngủ satin cao cấp",
+    "price": 590000,
+    "image": "/images/products/96.jpg",
+    "category": "Chân váy",
+    "description": "Chất satin mềm mại, sang trọng, thoải mái."
+  },
+  {
+    "name": "Áo sơ mi ngủ cotton mềm",
+    "price": 320000,
+    "image": "/images/products/97.jpg",
+    "category": "Chân váy",
+    "description": "Cotton 100%, mềm mại, dễ chịu cho giấc ngủ."
+  },
+  {
+    "name": "Khăn quàng cổ cashmere",
+    "price": 420000,
+    "image": "/images/products/98.jpg",
+    "category": "Chân váy",
+    "description": "Cashmere cao cấp, ấm áp và sang trọng."
+  },
+  {
+    "name": "Găng tay da",
+    "price": 350000,
+    "image": "/images/products/99.jpg",
+    "category": "Chân váy",
+    "description": "Da thật, tinh tế và bền bỉ."
+  },
+  {
+    "name": "Mũ fedora thanh lịch",
+    "price": 290000,
+    "image": "/images/products/100.jpg",
+    "category": "Chân váy",
+    "description": "Mũ fedora phong cách cổ điển, sang trọng."
+  },
+
+
+
+
+
+  {
+    "name": "Chân váy midi xếp ly",
+    "price": 350000,
+    "image": "/images/products/101.jpg",
+    "category": "Áo thun",
+    "description": "Xếp ly thanh lịch, phong cách nữ tính."
+  },
+  {
+    "name": "Chân váy bút chì công sở",
+    "price": 420000,
+    "image": "/images/products/102.jpg",
+    "category": "Áo thun",
+    "description": "Bút chì ôm dáng, sang trọng cho văn phòng."
+  },
+  {
+    "name": "Chân váy xòe jean",
+    "price": 380000,
+    "image": "/images/products/103.jpg",
+    "category": "Áo thun",
+    "description": "Xòe jean phong cách retro, trẻ trung."
+  },
+  {
+    "name": "Chân váy tennis trắng",
+    "price": 290000,
+    "image": "/images/products/104.jpg",
+    "category": "Áo thun",
+    "description": "Phong cách tennis năng động, trẻ trung."
+  },
+  {
+    "name": "Chân váy da đen",
+    "price": 460000,
+    "image": "/images/products/105.jpg",
+    "category": "Áo thun",
+    "description": "Chất da bóng, phong cách cá tính và sang trọng."
+  },
+  {
+    "name": "Áo sơ mi hoodie unisex",
+    "price": 390000,
+    "image": "/images/products/106.jpg",
+    "category": "Áo thun",
+    "description": "Hoodie ấm áp, phong cách streetwear."
+  },
+  {
+    "name": "Hoodie cổ trễ oversized",
+    "price": 450000,
+    "image": "/images/products/107.jpg",
+    "category": "Áo thun",
+    "description": "Oversized cổ trễ, phong cách K-pop."
+  },
+  {
+    "name": "Hoodie zip-up basic",
+    "price": 410000,
+    "image": "/images/products/108.jpg",
+    "category": "Áo thun",
+    "description": "Basic zip-up, dễ dàng mặc hằng ngày."
+  },
+  {
+    "name": "Hoodie họa tiết vintage",
+    "price": 470000,
+    "image": "/images/products/109.jpg",
+    "category": "Áo thun",
+    "description": "Họa tiết vintage độc đáo."
+  },
+  {
+    "name": "Áo sơ mi blazer nữ công sở",
+    "price": 790000,
+    "image": "/images/products/110.jpg",
+    "category": "Áo thun",
+    "description": "Blazer nữ phong cách công sở, sang trọng."
+  },
+  {
+    "name": "Blazer nam form chuẩn",
+    "price": 850000,
+    "image": "/images/products/111.jpg",
+    "category": "Áo thun",
+    "description": "Blazer nam form chuẩn, lịch lãm và sang trọng."
+  },
+  {
+    "name": "Blazer cổ ve chéo",
+    "price": 920000,
+    "image": "/images/products/112.jpg",
+    "category": "Áo thun",
+    "description": "Cổ ve chéo phong cách châu Âu."
+  },
+  {
+    "name": "Áo sơ mi tập gym thể thao",
+    "price": 210000,
+    "image": "/images/products/113.jpg",
+    "category": "Áo thun",
+    "description": "Chất vải thấm hút mồ hôi, thoải mái vận động."
+  },
+  {
+    "name": "Áo sơ mi chạy bộ nam",
+    "price": 230000,
+    "image": "/images/products/114.jpg",
+    "category": "Áo thun",
+    "description": "Thoáng khí, nhẹ nhàng cho mọi hoạt động."
+  },
+  {
+    "name": "Áo sơ mi yoga nữ",
+    "price": 260000,
+    "image": "/images/products/115.jpg",
+    "category": "Áo thun",
+    "description": "Chất vải co giãn 4 chiều, thoải mái tập luyện."
+  },
+  {
+    "name": "Bộ đồ ngủ satin cao cấp",
+    "price": 590000,
+    "image": "/images/products/116.jpg",
+    "category": "Áo thun",
+    "description": "Chất satin mềm mại, sang trọng, thoải mái."
+  },
+  {
+    "name": "Áo sơ mi ngủ cotton mềm",
+    "price": 320000,
+    "image": "/images/products/117.jpg",
+    "category": "Áo thun",
+    "description": "Cotton 100%, mềm mại, dễ chịu cho giấc ngủ."
+  },
+  {
+    "name": "Khăn quàng cổ cashmere",
+    "price": 420000,
+    "image": "/images/products/118.jpg",
+    "category": "Áo thun",
+    "description": "Cashmere cao cấp, ấm áp và sang trọng."
+  },
+  {
+    "name": "Găng tay da",
+    "price": 350000,
+    "image": "/images/products/119.jpg",
+    "category": "Áo thun",
+    "description": "Da thật, tinh tế và bền bỉ."
+  },
+  {
+    "name": "Mũ fedora thanh lịch",
+    "price": 290000,
+    "image": "/images/products/120.jpg",
+    "category": "Áo thun",
+    "description": "Mũ fedora phong cách cổ điển, sang trọng."
+  },
+
+
+
+
+
+  {
+    "name": "Chân váy midi xếp ly",
+    "price": 350000,
+    "image": "/images/products/121.jpg",
+    "category": "Giày",
+    "description": "Xếp ly thanh lịch, phong cách nữ tính."
+  },
+  {
+    "name": "Chân váy bút chì công sở",
+    "price": 420000,
+    "image": "/images/products/122.jpg",
+    "category": "Giày",
+    "description": "Bút chì ôm dáng, sang trọng cho văn phòng."
+  },
+  {
+    "name": "Chân váy xòe jean",
+    "price": 380000,
+    "image": "/images/products/123.jpg",
+    "category": "Giày",
+    "description": "Xòe jean phong cách retro, trẻ trung."
+  },
+  {
+    "name": "Chân váy tennis trắng",
+    "price": 290000,
+    "image": "/images/products/124.jpg",
+    "category": "Giày",
+    "description": "Phong cách tennis năng động, trẻ trung."
+  },
+  {
+    "name": "Chân váy da đen",
+    "price": 460000,
+    "image": "/images/products/125.jpg",
+    "category": "Giày",
+    "description": "Chất da bóng, phong cách cá tính và sang trọng."
+  },
+  {
+    "name": "Áo sơ mi hoodie unisex",
+    "price": 390000,
+    "image": "/images/products/126.jpg",
+    "category": "Giày",
+    "description": "Hoodie ấm áp, phong cách streetwear."
+  },
+  {
+    "name": "Hoodie cổ trễ oversized",
+    "price": 450000,
+    "image": "/images/products/127.jpg",
+    "category": "Giày",
+    "description": "Oversized cổ trễ, phong cách K-pop."
+  },
+  {
+    "name": "Hoodie zip-up basic",
+    "price": 410000,
+    "image": "/images/products/128.jpg",
+    "category": "Giày",
+    "description": "Basic zip-up, dễ dàng mặc hằng ngày."
+  },
+  {
+    "name": "Hoodie họa tiết vintage",
+    "price": 470000,
+    "image": "/images/products/129.jpg",
+    "category": "Giày",
+    "description": "Họa tiết vintage độc đáo."
+  },
+  {
+    "name": "Áo sơ mi blazer nữ công sở",
+    "price": 790000,
+    "image": "/images/products/130.jpg",
+    "category": "Giày",
+    "description": "Blazer nữ phong cách công sở, sang trọng."
+  },  {
+    "name": "Chân váy midi xếp ly",
+    "price": 350000,
+    "image": "/images/products/131.jpg",
+    "category": "Giày",
+    "description": "Xếp ly thanh lịch, phong cách nữ tính."
+  },
+  {
+    "name": "Chân váy bút chì công sở",
+    "price": 420000,
+    "image": "/images/products/132.jpg",
+    "category": "Giày",
+    "description": "Bút chì ôm dáng, sang trọng cho văn phòng."
+  },
+  {
+    "name": "Chân váy xòe jean",
+    "price": 380000,
+    "image": "/images/products/133.jpg",
+    "category": "Giày",
+    "description": "Xòe jean phong cách retro, trẻ trung."
+  },
+  {
+    "name": "Chân váy tennis trắng",
+    "price": 290000,
+    "image": "/images/products/134.jpg",
+    "category": "Giày",
+    "description": "Phong cách tennis năng động, trẻ trung."
+  },
+  {
+    "name": "Chân váy da đen",
+    "price": 460000,
+    "image": "/images/products/135.jpg",
+    "category": "Giày",
+    "description": "Chất da bóng, phong cách cá tính và sang trọng."
+  },
+  {
+    "name": "Áo sơ mi hoodie unisex",
+    "price": 390000,
+    "image": "/images/products/136.jpg",
+    "category": "Giày",
+    "description": "Hoodie ấm áp, phong cách streetwear."
+  },
+  {
+    "name": "Hoodie cổ trễ oversized",
+    "price": 450000,
+    "image": "/images/products/137.jpg",
+    "category": "Giày",
+    "description": "Oversized cổ trễ, phong cách K-pop."
+  },
+  {
+    "name": "Hoodie zip-up basic",
+    "price": 410000,
+    "image": "/images/products/138.jpg",
+    "category": "Giày",
+    "description": "Basic zip-up, dễ dàng mặc hằng ngày."
+  },
+  {
+    "name": "Hoodie họa tiết vintage",
+    "price": 470000,
+    "image": "/images/products/139.jpg",
+    "category": "Giày",
+    "description": "Họa tiết vintage độc đáo."
+  },
+  {
+    "name": "Áo sơ mi blazer nữ công sở",
+    "price": 790000,
+    "image": "/images/products/140.jpg",
+    "category": "Giày",
+    "description": "Blazer nữ phong cách công sở, sang trọng."
+  },
+
+
+
+
+
+
+  {
+    "name": "Blazer nam form chuẩn",
+    "price": 850000,
+    "image": "/images/products/141.jpg",
+    "category": "Phụ kiện",
+    "description": "Blazer nam form chuẩn, lịch lãm và sang trọng."
+  },
+  {
+    "name": "Blazer cổ ve chéo",
+    "price": 920000,
+    "image": "/images/products/142.jpg",
+    "category": "Phụ kiện",
+    "description": "Cổ ve chéo phong cách châu Âu."
+  },
+  {
+    "name": "Áo sơ mi tập gym thể thao",
+    "price": 210000,
+    "image": "/images/products/143.jpg",
+    "category": "Phụ kiện",
+    "description": "Chất vải thấm hút mồ hôi, thoải mái vận động."
+  },
+  {
+    "name": "Áo sơ mi chạy bộ nam",
+    "price": 230000,
+    "image": "/images/products/144.jpg",
+    "category": "Phụ kiện",
+    "description": "Thoáng khí, nhẹ nhàng cho mọi hoạt động."
+  },
+  {
+    "name": "Áo sơ mi yoga nữ",
+    "price": 260000,
+    "image": "/images/products/145.jpg",
+    "category": "Phụ kiện",
+    "description": "Chất vải co giãn 4 chiều, thoải mái tập luyện."
+  },
+  {
+    "name": "Bộ đồ ngủ satin cao cấp",
+    "price": 590000,
+    "image": "/images/products/146.jpg",
+    "category": "Phụ kiện",
+    "description": "Chất satin mềm mại, sang trọng, thoải mái."
+  },
+  {
+    "name": "Áo sơ mi ngủ cotton mềm",
+    "price": 320000,
+    "image": "/images/products/147.jpg",
+    "category": "Phụ kiện",
+    "description": "Cotton 100%, mềm mại, dễ chịu cho giấc ngủ."
+  },
+  {
+    "name": "Khăn quàng cổ cashmere",
+    "price": 420000,
+    "image": "/images/products/148.jpg",
+    "category": "Phụ kiện",
+    "description": "Cashmere cao cấp, ấm áp và sang trọng."
+  },
+  {
+    "name": "Găng tay da",
+    "price": 350000,
+    "image": "/images/products/149.jpg",
+    "category": "Phụ kiện",
+    "description": "Da thật, tinh tế và bền bỉ."
+  },
+  {
+    "name": "Mũ fedora thanh lịch",
+    "price": 290000,
+    "image": "/images/products/150.jpg",
     "category": "Phụ kiện",
     "description": "Mũ fedora phong cách cổ điển, sang trọng."
+  },{
+    "name": "Chân váy midi xếp ly",
+    "price": 350000,
+    "image": "/images/products/151.jpg",
+    "category": "Phụ kiện",
+    "description": "Xếp ly thanh lịch, phong cách nữ tính."
+  },
+  {
+    "name": "Chân váy bút chì công sở",
+    "price": 420000,
+    "image": "/images/products/152.jpg",
+    "category": "Phụ kiện",
+    "description": "Bút chì ôm dáng, sang trọng cho văn phòng."
+  },
+  {
+    "name": "Chân váy xòe jean",
+    "price": 380000,
+    "image": "/images/products/153.jpg",
+    "category": "Phụ kiện",
+    "description": "Xòe jean phong cách retro, trẻ trung."
+  },
+  {
+    "name": "Chân váy tennis trắng",
+    "price": 290000,
+    "image": "/images/products/154.jpg",
+    "category": "Phụ kiện",
+    "description": "Phong cách tennis năng động, trẻ trung."
+  },
+  {
+    "name": "Chân váy da đen",
+    "price": 460000,
+    "image": "/images/products/155.jpg",
+    "category": "Phụ kiện",
+    "description": "Chất da bóng, phong cách cá tính và sang trọng."
+  },
+  {
+    "name": "Áo sơ mi hoodie unisex",
+    "price": 390000,
+    "image": "/images/products/156.jpg",
+    "category": "Phụ kiện",
+    "description": "Hoodie ấm áp, phong cách streetwear."
+  },
+  {
+    "name": "Hoodie cổ trễ oversized",
+    "price": 450000,
+    "image": "/images/products/157.jpg",
+    "category": "Phụ kiện",
+    "description": "Oversized cổ trễ, phong cách K-pop."
+  },
+  {
+    "name": "Hoodie zip-up basic",
+    "price": 410000,
+    "image": "/images/products/158.jpg",
+    "category": "Phụ kiện",
+    "description": "Basic zip-up, dễ dàng mặc hằng ngày."
+  },
+  {
+    "name": "Hoodie họa tiết vintage",
+    "price": 470000,
+    "image": "/images/products/159.jpg",
+    "category": "Phụ kiện",
+    "description": "Họa tiết vintage độc đáo."
+  },
+  {
+    "name": "Áo sơ mi blazer nữ công sở",
+    "price": 790000,
+    "image": "/images/products/160.jpg",
+    "category": "Phụ kiện",
+    "description": "Blazer nữ phong cách công sở, sang trọng."
   }
+    
 ]
