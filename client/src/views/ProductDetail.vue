@@ -27,6 +27,23 @@
           class="text-dark w-full py-3 rounded transition-all font-semibold tracking-wider mt-6">
           {{ product.stock > 0 ? '🛒 Thêm vào giỏ' : '⚠ Hết hàng' }}
         </button>
+        <Transition name="toast">
+          <div v-if="toast"
+               :class="[
+                 'mt-3 px-4 py-2.5 rounded-lg text-sm font-medium text-center',
+                 toast.startsWith('✅')
+                   ? 'bg-green-500/10 border border-green-500/20 text-green-400'
+                   : 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-400'
+               ]">
+            {{ toast }}
+            <router-link
+              v-if="!authStore.isLoggedIn.value"
+              to="/login"
+              class="ml-2 underline font-semibold hover:opacity-80 transition">
+              Đăng nhập ngay →
+            </router-link>
+          </div>
+        </Transition>
         <router-link to="/products" class="block text-muted hover:text-gold transition text-center mt-3 italic">← Quay lại cửa hàng</router-link>
         <router-link :to="`/products/${product._id}/reviews`"
                      class="flex items-center justify-between mt-8 p-4 bg-dark2 border border-white/10 rounded-lg hover:border-gold/50 transition">
@@ -63,6 +80,8 @@ const product = ref(null)
 const loading = ref(true)
 const quantity = ref(1)
 
+const toast = ref('')
+
 const formatPrice = (price) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)
 const increaseQuantity = () => {
   if (quantity.value < (product.value?.stock || 1)) quantity.value++
@@ -71,8 +90,16 @@ const decreaseQuantity = () => { if (quantity.value > 1) quantity.value-- }
 
 const addToCart = () => {
   if (!product.value || product.value.stock <= 0) return
+
+  if (!authStore.isLoggedIn.value) {
+    toast.value = 'Vui lòng đăng nhập để thêm vào giỏ hàng!'
+    setTimeout(() => { toast.value = '' }, 3000)
+    return
+  }
+
   cartStore.addToCart(product.value, quantity.value)
-  alert('Đã bỏ vào giỏ hàng! 🛒')
+  toast.value = '✅ Đã thêm vào giỏ hàng!'
+  setTimeout(() => { toast.value = '' }, 2000)
 }
 
 // ===== ĐÁNH GIÁ SẢN PHẨM =====
@@ -109,3 +136,7 @@ const submitReview = async () => {
 
 onMounted(fetchProduct)
 </script>
+<style scoped>
+.toast-enter-active, .toast-leave-active { transition: all 0.3s ease; }
+.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateY(-6px); }
+</style>

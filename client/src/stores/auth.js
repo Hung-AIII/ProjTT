@@ -1,77 +1,101 @@
 import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
 import axios from 'axios'
+import Cookies from 'js-cookie'
+import { watch } from 'vue'
 
-export const useAuthStore = defineStore('auth', {
-  state: () => ({
-    user: JSON.parse(localStorage.getItem('user')) || null,
-    token: localStorage.getItem('token') || null,
-  }),
+export const useAuthStore = defineStore('auth', () => {
 
-  getters: {
-    isLoggedIn: (state) => !!state.token,
-    isAdmin: (state) => state.user?.role === 'admin',
-  },
+  // ── State ──────────────────────────────────────────────────────
+  const token = ref(Cookies.get('token') || null)
+  const user  = ref(JSON.parse(localStorage.getItem('user')) || null)
 
-  actions: {
-async login(email, password) {
-  try {
-    const response = await axios.post('/api/auth/login', { email, password })
-    this.token = response.data.token
-    this.user = {
-      _id: response.data._id,
-      name: response.data.name,
-      email: response.data.email,
-      role: response.data.role,
+  // ── Watch: token thay đổi → tự động đồng bộ cookie + header ───
+  watch(
+    token,
+    (newToken) => {
+      if (newToken) {
+        Cookies.set('token', newToken, { expires: 30, sameSite: 'Strict' })
+        axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`
+      } else {
+        Cookies.remove('token')
+        delete axios.defaults.headers.common['Authorization']
+      }
+    },
+    { immediate: true }
+  )
+
+  // ── Getters — dùng computed để reactive đúng ───────────────────
+  // ❌ Bản cũ: const isLoggedIn = () => !!token.value  → hàm, luôn truthy
+  // ✅ Bản mới: computed → trả về boolean reactive
+  const isLoggedIn = computed(() => !!token.value)
+  const isAdmin    = computed(() => user.value?.role === 'admin')
+
+  // ── Actions ────────────────────────────────────────────────────
+  async function login(email, password) {
+    try {
+      const response = await axios.post('/api/auth/login', { email, password })
+
+      token.value = response.data.token
+      user.value  = {
+        _id:   response.data._id,
+        name:  response.data.name,
+        email: response.data.email,
+        role:  response.data.role,
+      }
+      localStorage.setItem('user', JSON.stringify(user.value))
+
+      const { useCartStore } = await import('./cart')
+      const cartStore = useCartStore()
+      cartStore.mergeGuestCartIntoUser(user.value._id)
+      cartStore.loadCart()
+
+      return { success: true }
+    } catch (error) {
+      return { success: false, message: error.response?.data?.message || 'Đăng nhập thất bại' }
     }
+  }
 
-    localStorage.setItem('token', this.token)
-    localStorage.setItem('user', JSON.stringify(this.user))
-    axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
+  async function register(name, email, password) {
+    try {
+      const response = await axios.post('/api/auth/register', { name, email, password })
+      return { success: true, message: response.data.message }
+    } catch (error) {
+      return { success: false, message: error.response?.data?.message || 'Đăng ký thất bại' }
+    }
+  }
 
-    // ✅ Gộp giỏ guest vào giỏ user (không ghi đè, không mất dữ liệu cũ)
+  async function fetchUser() {
+    if (!token.value) return
+    try {
+      const response = await axios.get('/api/auth/me')
+      user.value = response.data
+      localStorage.setItem('user', JSON.stringify(user.value))
+    } catch {
+      logout()
+    }
+  }
+
+  async function logout() {
+    token.value = null
+    user.value  = null
+    localStorage.removeItem('user')
+    localStorage.removeItem('cart')
+
     const { useCartStore } = await import('./cart')
     const cartStore = useCartStore()
-    cartStore.mergeGuestCartIntoUser(this.user._id)
+    cartStore.clearCartOnLogout()
     cartStore.loadCart()
-
-    return { success: true }
-  } catch (error) {
-    return { success: false, message: error.response?.data?.message || 'Đăng nhập thất bại' }
   }
-},
 
-    async register(name, email, password) {
-      try {
-        const response = await axios.post('/api/auth/register', { name, email, password })
-        return { success: true, message: response.data.message }
-      } catch (error) {
-        return { success: false, message: error.response?.data?.message || 'Đăng ký thất bại' }
-      }
-    },
-
-    async fetchUser() {
-      if (!this.token) return
-      try {
-        axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
-        const response = await axios.get('/api/auth/me')
-        this.user = response.data
-        localStorage.setItem('user', JSON.stringify(this.user))
-      } catch (error) {
-        this.logout()
-      }
-    },
-
-    async logout() {
-  this.user = null
-  this.token = null
-  localStorage.removeItem('token')
-  localStorage.removeItem('user')
-  delete axios.defaults.headers.common['Authorization']
-  // Load lại giỏ hàng guest (hoặc rỗng)
-  const { useCartStore } = await import('./cart')
-  const cartStore = useCartStore()
-  cartStore.clearCartOnLogout()
-  cartStore.loadCart()
-}
+  return {
+    token,
+    user,
+    isLoggedIn,
+    isAdmin,
+    login,
+    register,
+    fetchUser,
+    logout,
   }
 })

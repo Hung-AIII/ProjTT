@@ -64,12 +64,25 @@
       >
         {{ product.stock > 0 ? '🛒 Thêm vào giỏ' : 'Hết hàng' }}
       </button>
+      <Transition name="toast">
+        <p v-if="toast"
+           :class="[
+             'text-xs text-center mt-2 px-2 py-1.5 rounded-lg font-medium',
+             toast.startsWith('✅')
+               ? 'bg-green-500/10 text-green-400'
+               : 'bg-yellow-500/10 text-yellow-400'
+           ]">
+          {{ toast }}
+        </p>
+      </Transition>
     </div>
   </div>
 </template>
 
 <script setup>
 import { useCartStore } from '../stores/cart'
+import { useAuthStore } from '../stores/auth'
+import { ref } from 'vue'
 
 const props = defineProps({
   product: {
@@ -79,6 +92,8 @@ const props = defineProps({
 })
 
 const cartStore = useCartStore()
+const authStore = useAuthStore()
+const toast = ref('')
 
 const formatPrice = (price) => {
   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)
@@ -86,6 +101,19 @@ const formatPrice = (price) => {
 
 const addToCart = () => {
   if (!props.product || props.product.stock <= 0) return
+
+  if (!authStore.isLoggedIn.value) {
+    toast.value = 'Vui lòng đăng nhập để thêm vào giỏ hàng!'
+    setTimeout(() => { toast.value = '' }, 3000)
+    return
+  }
+
   cartStore.addToCart(props.product, 1)
+  toast.value = '✅ Đã thêm vào giỏ hàng!'
+  setTimeout(() => { toast.value = '' }, 2000)
 }
 </script>
+<style scoped>
+.toast-enter-active, .toast-leave-active { transition: all 0.25s ease; }
+.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateY(-4px); }
+</style>

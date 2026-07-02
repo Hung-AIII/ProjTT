@@ -1,277 +1,601 @@
 <template>
-  <div class="pt-16 overflow-x-hidden">
+  <div class="home-root">
 
-    <!-- ===== HERO SLIDER ===== -->
-    <section class="relative h-[90vh] min-h-[560px] overflow-hidden">
-      <TransitionGroup name="slide">
-        <div v-for="(slide, i) in slides" :key="slide.id" v-show="currentSlide === i"
-             class="absolute inset-0">
-          <img :src="slide.image" :alt="slide.title"
-               class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
-          <div class="absolute inset-0 flex items-center">
-            <div class="max-w-7xl mx-auto px-8 sm:px-16">
-              <p class="text-gold text-xs tracking-[0.4em] uppercase font-semibold mb-4 opacity-0 animate-fadeUp" style="animation-delay:0.1s">{{ slide.sub }}</p>
-              <h2 class="text-5xl sm:text-7xl font-extrabold text-light leading-tight tracking-[0.15em] opacity-0 animate-fadeUp" style="animation-delay:0.25s">
-                {{ slide.title }}
-              </h2>
-              <p class="text-muted text-lg mt-4 max-w-md opacity-0 animate-fadeUp" style="animation-delay:0.4s">{{ slide.desc }}</p>
-              <router-link :to="slide.link"
-                           class="inline-block mt-8 bg-gold text-dark px-8 py-3.5 rounded-full font-semibold tracking-wider hover:bg-goldHover hover:shadow-lg hover:shadow-gold/30 hover:-translate-y-0.5 transition-all opacity-0 animate-fadeUp"
-                           style="animation-delay:0.55s">
-                {{ slide.cta }}
-              </router-link>
+    <!-- ===== HERO: BILLBOARD TYPOGRAPHY ===== -->
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">Bộ sưu tập 2026</span>
+        <span class="eyebrow-line"></span>
+      </div>
+
+      <div class="hero-title-wrap">
+        <div class="hero-title-shadow" aria-hidden="true">HÙNG HÀ</div>
+        <h1 class="hero-title">HÙNG HÀ</h1>
+      </div>
+
+      <div class="hero-bottom">
+        <p class="hero-tagline">"Không mua chịu thua bạn rồi" 😎</p>
+        <router-link to="/products" class="hero-cta">
+          <span>Khám phá ngay</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </router-link>
+      </div>
+
+      <!-- Góc trang trí -->
+      <div class="hero-corner hero-corner--tl"></div>
+      <div class="hero-corner hero-corner--br"></div>
+      <div class="hero-year">EST. 2018</div>
+    </section>
+
+    <!-- ===== MARQUEE ===== -->
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span v-for="(item, i) in [...marquee, ...marquee]" :key="i" class="marquee-item">
+          <span class="marquee-dot">✦</span> {{ item }}
+        </span>
+      </div>
+    </div>
+
+    <!-- ===== CATEGORY GRID ===== -->
+    <section class="cat-section">
+      <div class="section-header">
+        <p class="section-label">Danh mục</p>
+        <h2 class="section-title">Phong cách của bạn<br/>bắt đầu từ đây</h2>
+      </div>
+      <div class="cat-grid">
+        <router-link
+          v-for="cat in categories"
+          :key="cat.name"
+          :to="`/products?category=${encodeURIComponent(cat.name)}`"
+          class="cat-card"
+          :style="{ '--accent': cat.color }"
+        >
+          <div class="cat-icon">{{ cat.icon }}</div>
+          <div class="cat-info">
+            <p class="cat-name">{{ cat.name }}</p>
+            <p class="cat-count">{{ cat.count }}</p>
+          </div>
+          <div class="cat-arrow">→</div>
+          <div class="cat-bg"></div>
+        </router-link>
+      </div>
+    </section>
+
+    <!-- ===== BRAND STATEMENT ===== -->
+    <section class="statement-section">
+      <div class="statement-inner">
+        <div class="statement-left">
+          <p class="section-label">Triết lý</p>
+          <blockquote class="statement-quote">
+            Thời trang không phải<br/>
+            quần áo bạn mặc —<br/>
+            đó là <em>ai bạn là</em>.
+          </blockquote>
+          <div class="statement-divider"></div>
+          <p class="statement-body">
+            Hùng Hà được xây dựng từ một niềm tin giản dị: mỗi người đều xứng đáng ăn mặc tốt mà không cần chi quá nhiều. Chúng tôi chọn lọc kỹ, kiểm tra chất lượng thực, và chỉ bán những gì chúng tôi tự hào đặt tên mình lên đó.
+          </p>
+          <router-link to="/contact" class="statement-link">
+            Liên hệ với chúng tôi →
+          </router-link>
+        </div>
+        <div class="statement-right">
+          <div class="stat-grid">
+            <div v-for="stat in stats" :key="stat.label" class="stat-box">
+              <p class="stat-value">{{ stat.value }}</p>
+              <p class="stat-label">{{ stat.label }}</p>
             </div>
           </div>
         </div>
-      </TransitionGroup>
-
-      <!-- Điều hướng slide -->
-      <button @click="prevSlide"
-              class="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/40 border border-white/20 text-light hover:bg-gold hover:text-dark hover:border-gold transition flex items-center justify-center">
-        ‹
-      </button>
-      <button @click="nextSlide"
-              class="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/40 border border-white/20 text-light hover:bg-gold hover:text-dark hover:border-gold transition flex items-center justify-center">
-        ›
-      </button>
-
-      <!-- Dots -->
-      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-        <button v-for="(_, i) in slides" :key="i" @click="currentSlide = i"
-                :class="[
-                  'rounded-full transition-all duration-300',
-                  currentSlide === i ? 'w-6 h-2 bg-gold' : 'w-2 h-2 bg-white/30 hover:bg-white/60'
-                ]" />
       </div>
     </section>
 
-    <!-- ===== THÔNG TIN NHANH ===== -->
-    <section class="bg-gold text-dark py-3 overflow-hidden">
-      <div class="flex gap-16 animate-marquee whitespace-nowrap">
-        <span v-for="item in marqueeItems" :key="item" class="text-sm font-semibold tracking-wider uppercase">
-          ✦ {{ item }}
-        </span>
-        <!-- Lặp lại để marquee mượt -->
-        <span v-for="item in marqueeItems" :key="'dup-' + item" class="text-sm font-semibold tracking-wider uppercase">
-          ✦ {{ item }}
-        </span>
+    <!-- ===== COMMITMENT ===== -->
+    <section class="commit-section">
+      <p class="section-label" style="text-align:center; margin-bottom: 3rem;">Cam kết</p>
+      <div class="commit-list">
+        <div v-for="(item, i) in commits" :key="item.title" class="commit-item">
+          <span class="commit-num">{{ String(i + 1).padStart(2, '0') }}</span>
+          <div>
+            <p class="commit-title">{{ item.title }}</p>
+            <p class="commit-desc">{{ item.desc }}</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ===== GIỚI THIỆU THƯƠNG HIỆU ===== -->
-    <section class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
-      <div>
-        <p class="text-gold text-xs tracking-[0.35em] uppercase font-semibold mb-3">Câu chuyện của chúng tôi</p>
-        <h2 class="text-4xl font-extrabold text-light tracking-wider leading-tight">
-          Thời trang không chỉ là<br/>
-          <span class="text-gold">quần áo.</span><br/>
-          Đó là cách bạn kể<br/>chuyện về mình.
-        </h2>
-        <p class="text-muted leading-relaxed mt-6 text-base">
-          Hùng Hà ra đời từ niềm tin rằng phong cách cá nhân là hình thức biểu đạt mạnh mẽ nhất. Chúng tôi chọn lọc từng sản phẩm với tiêu chí khắt khe — không chỉ về chất lượng vải vóc, mà còn về câu chuyện và cảm xúc mà nó mang lại.
-        </p>
-        <p class="text-muted leading-relaxed mt-3 text-base">
-          Từ một tiệm nhỏ tại Hà Nội, Hùng Hà đã phục vụ hàng nghìn khách hàng yêu thời trang trên toàn quốc — những người hiểu rằng mặc đẹp không phải là xa xỉ, mà là sự tự tôn trọng bản thân.
-        </p>
-        <router-link to="/products"
-                     class="inline-flex items-center gap-2 mt-8 text-gold font-semibold hover:gap-4 transition-all">
-          Khám phá bộ sưu tập →
+    <!-- ===== CTA CUỐI ===== -->
+    <section class="final-cta">
+      <div class="final-cta-inner">
+        <p class="section-label">Bắt đầu ngay hôm nay</p>
+        <h2 class="final-title">160+ sản phẩm<br/>đang chờ bạn.</h2>
+        <router-link to="/products" class="final-btn">
+          Vào cửa hàng
         </router-link>
       </div>
-      <div class="relative">
-        <img src="https://picsum.photos/seed/brand/600/700" alt="Hùng Hà Brand"
-             class="w-full h-[420px] object-cover rounded-2xl shadow-2xl shadow-black/60" />
-        <div class="absolute -bottom-5 -left-5 bg-gold text-dark px-6 py-4 rounded-xl shadow-lg">
-          <p class="text-3xl font-extrabold leading-none">2018</p>
-          <p class="text-xs font-semibold mt-0.5 uppercase tracking-wider">Thành lập</p>
-        </div>
-        <div class="absolute -top-4 -right-4 w-24 h-24 border-4 border-gold/30 rounded-full"></div>
-      </div>
-    </section>
-
-    <!-- ===== SỐ LIỆU ===== -->
-    <section class="bg-dark3/60 border-y border-white/5 py-16">
-      <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div v-for="stat in stats" :key="stat.label">
-          <p class="text-4xl font-extrabold text-gold">{{ stat.value }}</p>
-          <p class="text-muted text-sm mt-1 tracking-wider uppercase">{{ stat.label }}</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CAM KẾT ===== -->
-    <section class="max-w-7xl mx-auto px-6 py-24">
-      <div class="text-center mb-14">
-        <p class="text-gold text-xs tracking-[0.35em] uppercase font-semibold mb-2">Tại sao chọn chúng tôi</p>
-        <h2 class="text-3xl font-bold text-light tracking-wider">Cam kết của Hùng Hà</h2>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div v-for="item in commitments" :key="item.title"
-             class="group bg-dark3/60 border border-white/5 rounded-2xl p-6 hover:border-gold/40 hover:-translate-y-1 transition-all duration-300 text-center">
-          <div class="text-4xl mb-4">{{ item.icon }}</div>
-          <h3 class="text-light font-bold tracking-wide mb-2">{{ item.title }}</h3>
-          <p class="text-muted text-sm leading-relaxed">{{ item.desc }}</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== GALLERY ẢNH SHOP ===== -->
-    <section class="max-w-7xl mx-auto px-6 pb-24">
-      <div class="text-center mb-10">
-        <p class="text-gold text-xs tracking-[0.35em] uppercase font-semibold mb-2">Không gian</p>
-        <h2 class="text-3xl font-bold text-light tracking-wider">Cửa hàng của chúng tôi</h2>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div v-for="(img, i) in galleryImages" :key="i"
-             :class="['overflow-hidden rounded-xl', i === 0 ? 'row-span-2' : '']">
-          <img :src="img" alt="Cửa hàng Hùng Hà"
-               class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-               :class="i === 0 ? 'h-full min-h-[320px]' : 'h-44'" />
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CTA CUỐI TRANG ===== -->
-    <section class="relative bg-gradient-to-br from-dark via-dark2 to-dark border-t border-white/5 py-24 text-center overflow-hidden">
-      <div class="absolute inset-0 opacity-20"
-           style="background: radial-gradient(ellipse at center, #b8960c 0%, transparent 70%)"></div>
-      <div class="relative z-10 max-w-2xl mx-auto px-6">
-        <p class="text-gold text-xs tracking-[0.4em] uppercase font-semibold mb-4">✦ Bộ sưu tập 2026</p>
-        <h2 class="text-5xl sm:text-6xl font-extrabold tracking-[0.2em] bg-gradient-to-r from-light to-gold bg-clip-text text-transparent">
-          HÙNG HÀ
-        </h2>
-        <p class="text-muted text-lg italic mt-3">"Không mua chịu thua bạn rồi" 😎</p>
-        <router-link to="/products"
-                     class="inline-block mt-8 bg-gold text-dark px-10 py-4 rounded-full hover:bg-goldHover transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-gold/30 font-semibold tracking-widest">
-          Mua sắm ngay
-        </router-link>
-      </div>
+      <div class="final-deco" aria-hidden="true">SHOP</div>
     </section>
 
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-
-// ===== SLIDER =====
-const currentSlide = ref(0)
-let autoSlide = null
-
-const slides = [
-  {
-    id: 1,
-    image: 'https://picsum.photos/seed/fashion1/1600/900',
-    sub: 'Bộ sưu tập 2026',
-    title: 'HÙNG HÀ',
-    desc: 'Thời trang không chỉ là quần áo — đó là cách bạn kể chuyện về bản thân.',
-    cta: 'Khám phá ngay',
-    link: '/products',
-  },
-  {
-    id: 2,
-    image: 'https://picsum.photos/seed/fashion2/1600/900',
-    sub: 'Phong cách mới',
-    title: 'ĐẶT RIÊNG\nMỘT DẤU ẤN',
-    desc: 'Hàng trăm mẫu áo, quần, giày dép và phụ kiện cao cấp đang chờ bạn.',
-    cta: 'Xem sản phẩm',
-    link: '/products',
-  },
-  {
-    id: 3,
-    image: 'https://picsum.photos/seed/fashion3/1600/900',
-    sub: 'Chất lượng đỉnh cao',
-    title: 'TỰ TIN\nMỖI NGÀY',
-    desc: 'Chọn lọc kỹ từng sản phẩm. Chúng tôi cam kết chất lượng và phong cách.',
-    cta: 'Liên hệ với chúng tôi',
-    link: '/contact',
-  },
-]
-
-const nextSlide = () => { currentSlide.value = (currentSlide.value + 1) % slides.length }
-const prevSlide = () => { currentSlide.value = (currentSlide.value - 1 + slides.length) % slides.length }
-
-onMounted(() => { autoSlide = setInterval(nextSlide, 5000) })
-onUnmounted(() => clearInterval(autoSlide))
-
-// ===== MARQUEE =====
-const marqueeItems = [
-  'Miễn phí vận chuyển đơn từ 500K',
+const marquee = [
+  'Miễn phí vận chuyển từ 500K',
   'Hàng chính hãng 100%',
-  'Đổi trả trong 7 ngày',
-  'Thanh toán khi nhận hàng',
-  'Hỗ trợ 8:00 - 21:00 mỗi ngày',
+  'Đổi trả 7 ngày',
+  'COD toàn quốc',
+  'Hỗ trợ 8:00 – 21:00',
 ]
 
-// ===== SỐ LIỆU =====
+const categories = [
+  { name: 'Áo sơ mi', icon: '👔', count: '20 sản phẩm', color: '#b8960c' },
+  { name: 'Váy',      icon: '👗', count: '20 sản phẩm', color: '#c084fc' },
+  { name: 'Quần',     icon: '👖', count: '20 sản phẩm', color: '#34d399' },
+  { name: 'Áo khoác', icon: '🧥', count: '20 sản phẩm', color: '#60a5fa' },
+  { name: 'Áo thun',  icon: '👕', count: '20 sản phẩm', color: '#f87171' },
+  { name: 'Giày',     icon: '👟', count: '20 sản phẩm', color: '#fb923c' },
+  { name: 'Phụ kiện', icon: '👜', count: '20 sản phẩm', color: '#a3e635' },
+]
+
 const stats = [
-  { value: '5.000+', label: 'Khách hàng hài lòng' },
-  { value: '200+', label: 'Mẫu sản phẩm' },
-  { value: '7+', label: 'Năm kinh nghiệm' },
-  { value: '4.8★', label: 'Đánh giá trung bình' },
+  { value: '5K+',  label: 'Khách hàng' },
+  { value: '160+', label: 'Sản phẩm' },
+  { value: '7+',   label: 'Năm hoạt động' },
+  { value: '4.8★', label: 'Đánh giá TB' },
 ]
 
-// ===== CAM KẾT =====
-const commitments = [
-  {
-    icon: '👑',
-    title: 'Chất lượng cao cấp',
-    desc: 'Mỗi sản phẩm đều được chọn lọc kỹ lưỡng về chất liệu và đường may.',
-  },
-  {
-    icon: '🚚',
-    title: 'Giao hàng nhanh',
-    desc: 'Giao hàng toàn quốc trong 2–4 ngày. Miễn phí vận chuyển từ 500.000đ.',
-  },
-  {
-    icon: '🔄',
-    title: 'Đổi trả dễ dàng',
-    desc: 'Không vừa ý? Đổi trả miễn phí trong vòng 7 ngày kể từ ngày nhận hàng.',
-  },
-  {
-    icon: '💬',
-    title: 'Hỗ trợ tận tâm',
-    desc: 'Đội ngũ tư vấn luôn sẵn sàng hỗ trợ bạn từ 8:00 đến 21:00 mỗi ngày.',
-  },
-]
-
-// ===== GALLERY =====
-const galleryImages = [
-  'https://picsum.photos/seed/store1/600/800',
-  'https://picsum.photos/seed/store2/400/350',
-  'https://picsum.photos/seed/store3/400/350',
-  'https://picsum.photos/seed/store4/400/350',
-  'https://picsum.photos/seed/store5/400/350',
+const commits = [
+  { title: 'Chất lượng thật',     desc: 'Mỗi sản phẩm đều qua kiểm định thực tế trước khi lên kệ.' },
+  { title: 'Giao hàng nhanh',     desc: 'Toàn quốc 2–4 ngày. Miễn phí vận chuyển từ 500.000đ.' },
+  { title: 'Đổi trả không lo',    desc: 'Không vừa ý trong 7 ngày — đổi ngay, không hỏi nhiều.' },
+  { title: 'Hỗ trợ tận tâm',      desc: 'Đội ngũ online 8:00–21:00 mỗi ngày, phản hồi trong 15 phút.' },
 ]
 </script>
 
 <style scoped>
-/* Slide transition */
-.slide-enter-active,
-.slide-leave-active {
-  transition: opacity 0.8s ease, transform 0.8s ease;
+/* ── ROOT ─────────────────────────────────── */
+.home-root {
+  overflow-x: hidden;
+}
+
+/* ── HERO ─────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 4rem 4rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.eyebrow-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(184,150,12,0.4);
+  max-width: 80px;
+}
+.eyebrow-text {
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #b8960c;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.hero-title-wrap {
+  position: relative;
+  line-height: 0.85;
+  margin-bottom: 3rem;
+  user-select: none;
+}
+/* Bóng chữ layered — signature element */
+.hero-title-shadow {
   position: absolute;
   inset: 0;
+  font-size: clamp(5rem, 16vw, 14rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(184,150,12,0.15);
+  transform: translate(6px, 6px);
+  pointer-events: none;
+  white-space: nowrap;
 }
-.slide-enter-from { opacity: 0; transform: scale(1.03); }
-.slide-leave-to  { opacity: 0; transform: scale(0.98); }
+.hero-title {
+  font-size: clamp(5rem, 16vw, 14rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #f5e27a 0%, #b8960c 40%, #7a5f00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+  margin: 0;
+  position: relative;
+}
 
-/* Fade up cho text trong hero */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+.hero-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
-.animate-fadeUp {
-  animation: fadeUp 0.6s ease forwards;
+.hero-tagline {
+  color: rgba(255,255,255,0.45);
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #b8960c;
+  color: #0a0a0a;
+  padding: 0.9rem 2rem;
+  border-radius: 2px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.hero-cta:hover {
+  background: #d4aa14;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(184,150,12,0.35);
 }
 
-/* Marquee chạy liên tục */
+/* Góc trang trí */
+.hero-corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-color: rgba(184,150,12,0.3);
+  border-style: solid;
+}
+.hero-corner--tl { top: 5rem; left: 2rem; border-width: 1px 0 0 1px; }
+.hero-corner--br { bottom: 2rem; right: 2rem; border-width: 0 1px 1px 0; }
+
+.hero-year {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 4rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+}
+
+/* ── MARQUEE ──────────────────────────────── */
+.marquee-wrap {
+  background: #b8960c;
+  overflow: hidden;
+  padding: 0.75rem 0;
+  border-top: none;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 2.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  white-space: nowrap;
+}
+.marquee-dot { color: rgba(0,0,0,0.4); }
+
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-.animate-marquee {
-  animation: marquee 20s linear infinite;
+
+/* ── CATEGORY GRID ────────────────────────── */
+.cat-section {
+  padding: 6rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+.section-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #b8960c;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.cat-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1.25rem;
+  background: #0d0d0d;
+  text-decoration: none;
+  overflow: hidden;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.cat-card:hover { background: #111; }
+.cat-card:hover .cat-bg {
+  opacity: 1;
+  transform: scale(1);
+}
+.cat-card:hover .cat-arrow {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+.cat-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 0% 50%, var(--accent) 0%, transparent 65%);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.35s ease;
+  pointer-events: none;
+}
+
+.cat-icon {
+  font-size: 1.8rem;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.cat-info { flex: 1; position: relative; z-index: 1; }
+.cat-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.02em;
+}
+.cat-count {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+}
+.cat-arrow {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.2);
+  transition: all 0.2s;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── STATEMENT ────────────────────────────── */
+.statement-section {
+  padding: 6rem 4rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.statement-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.statement-quote {
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  font-weight: 800;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: 1.5rem 0;
+  border: none;
+  padding: 0;
+}
+.statement-quote em {
+  font-style: normal;
+  color: #b8960c;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.statement-divider {
+  width: 40px;
+  height: 2px;
+  background: #b8960c;
+  margin: 1.5rem 0;
+}
+.statement-body {
+  color: rgba(255,255,255,0.45);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+.statement-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: #b8960c;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
+}
+.statement-link:hover { opacity: 0.7; }
+
+/* Stats */
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.stat-box {
+  background: #0d0d0d;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: background 0.2s;
+}
+.stat-box:hover { background: #111; }
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #b8960c;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-top: 0.5rem;
+}
+
+/* ── COMMIT ───────────────────────────────── */
+.commit-section {
+  padding: 6rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.commit-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.commit-item {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.commit-item:last-child { border-right: none; }
+.commit-item:hover { background: rgba(184,150,12,0.04); }
+
+.commit-num {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: #b8960c;
+  font-weight: 700;
+}
+.commit-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.01em;
+}
+.commit-desc {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.7;
+}
+
+/* ── FINAL CTA ────────────────────────────── */
+.final-cta {
+  position: relative;
+  padding: 8rem 4rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  text-align: center;
+}
+.final-cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.final-title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 1rem 0 2.5rem;
+}
+.final-btn {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid #b8960c;
+  color: #b8960c;
+  padding: 1rem 3rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.25s;
+}
+.final-btn:hover {
+  background: #b8960c;
+  color: #0a0a0a;
+  box-shadow: 0 0 40px rgba(184,150,12,0.3);
+}
+
+/* Chữ nền lớn trang trí */
+.final-deco {
+  position: absolute;
+  bottom: -1rem;
+  right: -1rem;
+  font-size: clamp(8rem, 20vw, 18rem);
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(184,150,12,0.07);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media (max-width: 768px) {
+  .hero { padding: 5rem 1.5rem 3rem; }
+  .hero-year { left: 1.5rem; }
+  .cat-section, .statement-section, .commit-section, .final-cta { padding: 4rem 1.5rem; }
+  .statement-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .commit-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .commit-item:last-child { border-bottom: none; }
+  .hero-title-shadow { display: none; }
 }
 </style>
